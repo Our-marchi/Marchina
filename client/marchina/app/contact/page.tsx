@@ -1,10 +1,12 @@
 import React from 'react';
 
 const Contact: React.FC = () => {
+    console.log('hello');
+    
   return (
     <div>
       <div className="flex items-center gap-3 h-5">
-        <div className="text-sm font-normal text-black opacity-50">Home</div>
+        <div className="text-sm font-normal text-black opacity-50">HOME</div>
         <div className="w-3.5 h-px border border-black/50 transform rotate-[117.05deg]"></div>
         <div className="text-sm font-normal text-black">Contact</div>
       </div>
