@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import Swal from 'sweetalert2';
 
 const SignUp: React.FC = () => {
   const router = useRouter();
@@ -15,6 +16,7 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
       const response = await axios.post("http://localhost:5000/api/user/signUp", {
         firstName,
@@ -22,11 +24,27 @@ const SignUp: React.FC = () => {
         password,
         role 
       });
-      localStorage.setItem("token", response.data.token);
-      router.push("/");
-      console.log(response.data, "signup success");
+      
+      if (response.data.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Sign Up Successful!',
+          text: 'You can now log in to your account.',
+          confirmButtonColor: 'black',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            router.push('/LogIn');
+          }
+        });
+      }
     } catch (error) {
-      console.log(error, "signup error");
+      console.error("Unexpected error:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Sign Up Failed',
+        text: 'There was an error creating your account. Please try again.',
+        confirmButtonColor: 'red',
+      });
     }
   };
 
@@ -141,5 +159,7 @@ const SignUp: React.FC = () => {
     </div>
   );
 };
+
+
 
 export default SignUp;
