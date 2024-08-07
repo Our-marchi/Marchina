@@ -1,5 +1,5 @@
 const { Sequelize,DataTypes } = require('sequelize');
-const sequelize=new Sequelize('el_marchi',"root","root",{host:'localhost',dialect:'mysql',module_dialect:'mysql2'})
+const sequelize=new Sequelize('marchina',"root","root",{host:'localhost',dialect:'mysql',module_dialect:'mysql2'})
 
 
 const db={}

@@ -1,9 +1,8 @@
-import Login from '../Components/LogIn/page';
+import Image from "next/image";
+import Contact from "./contact/page";
 
 export default function Home() {
   return (
-    <main>
-      <Login />
-    </main>
+  <Contact/>
   );
 }
