@@ -1,5 +1,5 @@
 -- Insert dummy data into `users` table
-INSERT INTO `el_marchi`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`, `status`) VALUES
+INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`, `status`) VALUES
 ('John', 'Doe', 'john.doe@example.com', 'password123', 'admin', '123 Main St, Springfield', NOW(), NOW(), 'active'),
 ('Jane', 'Smith', 'jane.smith@example.com', 'password123', 'buyer', '456 Elm St, Springfield', NOW(), NOW(), 'inactive'),
 ('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', 'buyer', '789 Maple Ave, Springfield', NOW(), NOW(), 'active'),
@@ -17,7 +17,7 @@ INSERT INTO `el_marchi`.`users` (`firstName`, `lastName`, `email`, `password`, `
 ('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'buyer', '951 Willow Dr, Springfield', NOW(), NOW(), 'active');
 
 -- Insert dummy data into `products` table
-INSERT INTO `el_marchi`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`) VALUES
 ('John', 'Doe', 'john.doe@example.com', 'password123', 'admin', '123 Main St, Springfield', NOW(), NOW()),
 ('Jane', 'Smith', 'jane.smith@example.com', 'password123', 'user', '456 Elm St, Springfield', NOW(), NOW()),
 ('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', 'user', '789 Maple Ave, Springfield', NOW(), NOW()),
@@ -50,7 +50,7 @@ INSERT INTO `el_marchi`.`users` (`firstName`, `lastName`, `email`, `password`, `
 ('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'user', '951 Willow Dr, Springfield', NOW(), NOW());
 
 -- Insert dummy data into `products` table
-INSERT INTO `el_marchi`.`products` (`name`, `description`, `price`, `stock`, `categorie`, `userid`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `categorie`, `userid`, `createdAt`, `updatedAt`) VALUES
 ('4K Ultra HD TV', 'A stunning 4K Ultra HD TV with vibrant colors and crisp details.', 799.99, 50, 'Electronics', 1, NOW(), NOW()),
 ('Wireless Earbuds', 'Compact and comfortable wireless earbuds with noise-canceling features.', 129.99, 100, 'Accessories', 2, NOW(), NOW()),
 ('Gaming Laptop', 'High-performance gaming laptop with the latest graphics card and processor.', 1499.99, 30, 'Computers', 1, NOW(), NOW()),
@@ -93,7 +93,7 @@ INSERT INTO `el_marchi`.`products` (`name`, `description`, `price`, `stock`, `ca
 ('Noise-Canceling Headphones', 'Over-ear noise-canceling headphones with premium sound quality.', 249.99, 50, 'Audio', 1, NOW(), NOW());
 
 -- Insert dummy data into `images` table
-INSERT INTO `el_marchi`.`images` (`imageurl`, `productid`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `marchina`.`images` (`imageurl`, `productid`, `createdAt`, `updatedAt`) VALUES
 ('https://i.pinimg.com/236x/bf/46/83/bf4683927abe7fcff5943d36eadc38b1.jpg', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=1', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=2', 1, NOW(), NOW()),
@@ -215,7 +215,7 @@ INSERT INTO `el_marchi`.`images` (`imageurl`, `productid`, `createdAt`, `updated
 ('https://picsum.photos/200/300?random=80', 20, NOW(), NOW());
 
 -- Insert dummy data into `carts` table
-INSERT INTO `el_marchi`.`carts` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `marchina`.`carts` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
 (1, 1, NOW(), NOW()), (2, 2, NOW(), NOW()), (3, 3, NOW(), NOW()),
 (4, 4, NOW(), NOW()), (5, 5, NOW(), NOW()), (6, 6, NOW(), NOW()),
 (7, 7, NOW(), NOW()), (8, 8, NOW(), NOW()), (9, 9, NOW(), NOW()),
@@ -225,7 +225,7 @@ INSERT INTO `el_marchi`.`carts` (`productid`, `userid`, `createdAt`, `updatedAt`
 (19, 4, NOW(), NOW()), (20, 5, NOW(), NOW());
 
 -- Insert dummy data into `ratings` table
-INSERT INTO `el_marchi`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, `updatedAt`) VALUES
 (5, 1, 1, NOW(), NOW()), (4, 2, 2, NOW(), NOW()), (3, 3, 3, NOW(), NOW()),
 (5, 4, 4, NOW(), NOW()), (4, 5, 5, NOW(), NOW()), (5, 6, 6, NOW(), NOW()),
 (3, 7, 7, NOW(), NOW()), (4, 8, 8, NOW(), NOW()), (5, 9, 9, NOW(), NOW()),
@@ -242,7 +242,7 @@ INSERT INTO `el_marchi`.`ratings` (`rating`, `productid`, `userid`, `createdAt`,
 (4, 19, 4, NOW(), NOW()), (5, 20, 5, NOW(), NOW());
 
 -- Insert dummy data into `wishlists` table
-INSERT INTO `el_marchi`.`wishlists` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `marchina`.`wishlists` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
 (1, 1, NOW(), NOW()), (2, 2, NOW(), NOW()), (3, 3, NOW(), NOW()),
 (4, 4, NOW(), NOW()), (5, 5, NOW(), NOW()), (6, 6, NOW(), NOW()),
 (7, 7, NOW(), NOW()), (8, 8, NOW(), NOW()), (9, 9, NOW(), NOW()),
