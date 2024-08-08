@@ -1,15 +1,16 @@
 import Login from '../app/LogIn/page'
 import SignUp from '../app/SinUp/page';
-import About from './about/page';
-import AddProd from './addProduct/page';
 
+import AddProd from './addProduct/page';
+import Contact from './contact/page';
 export default function Home() {
   return (
     <main>
       {/* <Login /> */}
       {/* <SignUp /> */}
        {/* <AddProd /> */}
-       <About />
+       {/* <About /> */}
+       <Contact />
 
     </main>
   );
