@@ -1,17 +1,24 @@
-import Login from '../app/LogIn/page'
-import SignUp from '../app/SinUp/page';
+import React from "react";
+import Navbar from './Homepage/Navbar/page';
+import Homepage from './Homepage/page';
+import Footer from './Homepage/Footer/page';
+import Cart from '../app/Cart/page'
+import AllProducts from './AllProducts/page';
 
-import AddProd from './addProduct/page';
-import Contact from './contact/page';
+
 export default function Home() {
-  return (
-    <main>
-      {/* <Login /> */}
-      {/* <SignUp /> */}
-       {/* <AddProd /> */}
-       {/* <About /> */}
-       <Contact />
+    return (
+      <div>
+        <Navbar/>
+         <main>
+            
+      {/* <Homepage /> /}
+        {/ <Cart/> */}
+        <AllProducts/>
+      </main>
+      <Footer/>
+    );
+      </div>
 
-    </main>
-  );
-}
+    );
+  }

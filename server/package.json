@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^22.1.0",
+    "@types/react": "^18.3.3",
     "aws-sdk": "^2.1280.0",
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.32.0",
@@ -22,6 +24,7 @@
     "nodemailer": "^6.8.0",
     "nodemon": "^3.1.4",
     "react-icons": "^5.2.1",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "typescript": "^5.5.4"
   }
 }

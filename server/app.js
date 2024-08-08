@@ -29,7 +29,8 @@ app.use((req, res, next) => {
 app.use("/api/WhishList",whishListRouter)
 app.use('/api/user',userRouter)
 
-app.use("api/CartRouter",cartRouter)
+app.use("/api/cart", cartRouter)
+console.log("Cart routes registered");
 app.use("api/RatingRouter",RatingRouter)
 app.use("/api/product", routerproduct)
 app.use(mailerRouter)
