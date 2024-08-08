@@ -5,8 +5,8 @@ import Contact from "./contact/page";
 import AllProducts from "./getAllProducts/page";
 import Update from "./upadateUserProfile/page";
 
-export default function Home() {
+export default function Home() {  
   return (
   <Update/>
   );
-}
+}  

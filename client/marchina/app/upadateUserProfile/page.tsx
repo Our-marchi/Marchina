@@ -1,7 +1,8 @@
 'use client';
 import React, { useState, useEffect, FormEvent } from 'react';
 import axios from 'axios';
-import jwtDecode, { JwtPayload } from 'jwt-decode';
+import  { JwtPayload } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 
 interface DecodedToken extends JwtPayload {
   firstName: string;
@@ -21,22 +22,27 @@ const Update: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [userId, setUserId] = useState<string | null>(null);
 
-//   useEffect(() => {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       const decodedToken = jwtDecode<DecodedToken>(token);
-//       setFirstName(decodedToken.firstName);
-//       setLastName(decodedToken.lastName);
-//       setEmail(decodedToken.email);
-//       setAddress(decodedToken.address || '');
-//       setUserId(decodedToken.userid);
-//     }
-//   }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     try {
+  //       const decodedToken: JwtPayload = jwtDecode(token);
+  //       setFirstName(decodedToken.firstName);
+  //       setLastName(decodedToken.lastName);
+  //       setEmail(decodedToken.email);
+  //       setAddress(decodedToken.address || '');
+  //       setUserId(decodedToken.userid);
+  //     } catch (error) {
+  //       console.error('Error decoding token:', error);
+  //     }
+  //   }
+  // }, []);
+  
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5000/api/user/${userId}`, {
+      const response = await axios.put(`http://localhost:5000/api/user/update/${userId}`, {
         firstName,
         lastName,
         email,
