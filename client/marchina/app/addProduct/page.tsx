@@ -76,7 +76,7 @@ const AddProd: React.FC = () => {
 
   const uploadSingleImage = async (base64: string) => {
     try {
-      const res = await axios.post('/api/uploadImage', { image: base64 });
+      const res = await axios.post('http://localhost:5000/api/uploadImage', { image: base64 });
       setUrl(res.data);
       if (res.data) {
         await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: res.data });
@@ -134,7 +134,7 @@ const AddProd: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('/api/product/add', product);
+      const response = await axios.post('http://localhost:5000/api/product/add', product);
       const newProductId = response.data.product.productid;
       setProductId(newProductId);
       setShowImageUpload(true);
@@ -280,7 +280,7 @@ const AddProd: React.FC = () => {
               </div>
               {url && (
                 <div className="mt-6 max-w-xs mx-auto">
-                  <Image 
+                  <img
                     src={url || "https://via.placeholder.com/300"} 
                     alt="Product" 
                     width={300} 
