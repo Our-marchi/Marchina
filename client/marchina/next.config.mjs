@@ -9,6 +9,7 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+    domains:['via.placeholder.com','localhost','play-lh.googleusercontent.com','images.unsplash.com', 'play-lh.googleusercontent.com'],
   },
 }
 
