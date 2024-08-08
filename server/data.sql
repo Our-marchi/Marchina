@@ -16,38 +16,7 @@ INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `r
 ('David', 'Garcia', 'david.garcia@example.com', 'password123', 'buyer', '753 Poplar Rd, Springfield', NOW(), NOW(), 'inactive'),
 ('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'buyer', '951 Willow Dr, Springfield', NOW(), NOW(), 'active');
 
--- Insert dummy data into `products` table
-INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`) VALUES
-('John', 'Doe', 'john.doe@example.com', 'password123', 'admin', '123 Main St, Springfield', NOW(), NOW()),
-('Jane', 'Smith', 'jane.smith@example.com', 'password123', 'user', '456 Elm St, Springfield', NOW(), NOW()),
-('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', 'user', '789 Maple Ave, Springfield', NOW(), NOW()),
-('Bob', 'Brown', 'bob.brown@example.com', 'password123', 'user', '321 Oak St, Springfield', NOW(), NOW()),
-('Emma', 'Wilson', 'emma.wilson@example.com', 'password123', 'user', '654 Pine Rd, Springfield', NOW(), NOW()),
-('Michael', 'Taylor', 'michael.taylor@example.com', 'password123', 'user', '987 Cedar Ln, Springfield', NOW(), NOW()),
-('Olivia', 'Anderson', 'olivia.anderson@example.com', 'password123', 'user', '147 Birch Dr, Springfield', NOW(), NOW()),
-('William', 'Thomas', 'william.thomas@example.com', 'password123', 'user', '258 Walnut Ave, Springfield', NOW(), NOW()),
-('Sophia', 'Jackson', 'sophia.jackson@example.com', 'password123', 'user', '369 Cherry St, Springfield', NOW(), NOW()),
-('James', 'White', 'james.white@example.com', 'password123', 'user', '741 Ash Rd, Springfield', NOW(), NOW()),
-('Emily', 'Harris', 'emily.harris@example.com', 'password123', 'user', '852 Spruce Ln, Springfield', NOW(), NOW()),
-('Daniel', 'Martin', 'daniel.martin@example.com', 'password123', 'user', '963 Fir Ave, Springfield', NOW(), NOW()),
-('Ava', 'Thompson', 'ava.thompson@example.com', 'password123', 'user', '159 Sycamore St, Springfield', NOW(), NOW()),
-('David', 'Garcia', 'david.garcia@example.com', 'password123', 'user', '753 Poplar Rd, Springfield', NOW(), NOW()),
-('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'user', '951 Willow Dr, Springfield', NOW(), NOW());
-('John', 'Doe', 'john.doe@example.com', 'password123', 'admin', '123 Main St, Springfield', NOW(), NOW()),
-('Jane', 'Smith', 'jane.smith@example.com', 'password123', 'user', '456 Elm St, Springfield', NOW(), NOW()),
-('Alice', 'Johnson', 'alice.johnson@example.com', 'password123', 'user', '789 Maple Ave, Springfield', NOW(), NOW()),
-('Bob', 'Brown', 'bob.brown@example.com', 'password123', 'user', '321 Oak St, Springfield', NOW(), NOW()),
-('Emma', 'Wilson', 'emma.wilson@example.com', 'password123', 'user', '654 Pine Rd, Springfield', NOW(), NOW()),
-('Michael', 'Taylor', 'michael.taylor@example.com', 'password123', 'user', '987 Cedar Ln, Springfield', NOW(), NOW()),
-('Olivia', 'Anderson', 'olivia.anderson@example.com', 'password123', 'user', '147 Birch Dr, Springfield', NOW(), NOW()),
-('William', 'Thomas', 'william.thomas@example.com', 'password123', 'user', '258 Walnut Ave, Springfield', NOW(), NOW()),
-('Sophia', 'Jackson', 'sophia.jackson@example.com', 'password123', 'user', '369 Cherry St, Springfield', NOW(), NOW()),
-('James', 'White', 'james.white@example.com', 'password123', 'user', '741 Ash Rd, Springfield', NOW(), NOW()),
-('Emily', 'Harris', 'emily.harris@example.com', 'password123', 'user', '852 Spruce Ln, Springfield', NOW(), NOW()),
-('Daniel', 'Martin', 'daniel.martin@example.com', 'password123', 'user', '963 Fir Ave, Springfield', NOW(), NOW()),
-('Ava', 'Thompson', 'ava.thompson@example.com', 'password123', 'user', '159 Sycamore St, Springfield', NOW(), NOW()),
-('David', 'Garcia', 'david.garcia@example.com', 'password123', 'user', '753 Poplar Rd, Springfield', NOW(), NOW()),
-('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'user', '951 Willow Dr, Springfield', NOW(), NOW());
+
 
 -- Insert dummy data into `products` table
 INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `categorie`, `userid`, `createdAt`, `updatedAt`) VALUES
