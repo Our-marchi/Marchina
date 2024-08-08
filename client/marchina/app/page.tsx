@@ -1,8 +1,16 @@
-import Image from "next/image";
-import Contact from "./contact/page";
+import Login from '../app/LogIn/page'
+import SignUp from '../app/SinUp/page';
+import About from './about/page';
+import AddProd from './addProduct/page';
 
 export default function Home() {
   return (
-  <Contact/>
+    <main>
+      {/* <Login /> */}
+      {/* <SignUp /> */}
+       {/* <AddProd /> */}
+       <About />
+
+    </main>
   );
 }
