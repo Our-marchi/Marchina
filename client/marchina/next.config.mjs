@@ -1,7 +1,15 @@
-/** @type {import('next').NextConfig} */
+/ @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/',
+      },
+    ],
+    domains:['via.placeholder.com','localhost','play-lh.googleusercontent.com','images.unsplash.com', 'play-lh.googleusercontent.com'],
   },
 }
 
