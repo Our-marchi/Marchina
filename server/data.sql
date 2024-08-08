@@ -17,6 +17,9 @@ INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `r
 ('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'buyer', '951 Willow Dr, Springfield', NOW(), NOW(), 'active');
 
 -- Insert dummy data into `products` table
+<<<<<<< HEAD
+INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `categorie`, `userid`, `createdAt`, `updatedAt`) VALUES
+=======
 INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`) VALUES
 ('John', 'Doe', 'john.doe@example.com', 'password123', 'admin', '123 Main St, Springfield', NOW(), NOW()),
 ('Jane', 'Smith', 'jane.smith@example.com', 'password123', 'user', '456 Elm St, Springfield', NOW(), NOW()),
@@ -71,6 +74,7 @@ INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `cat
 ('Portable Charger', '20000mAh portable charger with fast charging capabilities.', 49.99, 200, 'Mobile Accessories', 14, NOW(), NOW()),
 ('Smart Light Bulbs', 'Color-changing smart light bulbs compatible with voice assistants.', 34.99, 300, 'Smart Home', 15, NOW(), NOW()),
 ('Noise-Canceling Headphones', 'Over-ear noise-canceling headphones with premium sound quality.', 249.99, 50, 'Audio', 1, NOW(), NOW());
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 ('4K Ultra HD TV', 'A stunning 4K Ultra HD TV with vibrant colors and crisp details.', 799.99, 50, 'Electronics', 1, NOW(), NOW()),
 ('Wireless Earbuds', 'Compact and comfortable wireless earbuds with noise-canceling features.', 129.99, 100, 'Accessories', 2, NOW(), NOW()),
 ('Gaming Laptop', 'High-performance gaming laptop with the latest graphics card and processor.', 1499.99, 30, 'Computers', 1, NOW(), NOW()),
@@ -94,125 +98,35 @@ INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `cat
 
 -- Insert dummy data into `images` table
 INSERT INTO `marchina`.`images` (`imageurl`, `productid`, `createdAt`, `updatedAt`) VALUES
+<<<<<<< HEAD
+('https://tinyurl.com/53kmt8wk', 1, NOW(), NOW()),
+=======
 ('https://i.pinimg.com/236x/bf/46/83/bf4683927abe7fcff5943d36eadc38b1.jpg', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=1', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=2', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=3', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=4', 1, NOW(), NOW()),
 
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 ('https://i.pinimg.com/474x/f8/e5/7d/f8e57da0d7212bcd9964e9f9d6c176f1.jpg', 2, NOW(), NOW()),
-('https://picsum.photos/200/300?random=5', 2, NOW(), NOW()),
-('https://picsum.photos/200/300?random=6', 2, NOW(), NOW()),
-('https://picsum.photos/200/300?random=7', 2, NOW(), NOW()),
-('https://picsum.photos/200/300?random=8', 2, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/b4/42/1d/b4421d62f0c1c2bf77cfee32e4ea2d76.jpg', 3, NOW(), NOW()),
-('https://picsum.photos/200/300?random=9', 3, NOW(), NOW()),
-('https://picsum.photos/200/300?random=10', 3, NOW(), NOW()),
-('https://picsum.photos/200/300?random=11', 3, NOW(), NOW()),
-('https://picsum.photos/200/300?random=12', 3, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/8a/ca/b5/8acab5f315461ddb9e0393dae2865cca.jpg', 4, NOW(), NOW()),
-('https://picsum.photos/200/300?random=13', 4, NOW(), NOW()),
-('https://picsum.photos/200/300?random=14', 4, NOW(), NOW()),
-('https://picsum.photos/200/300?random=15', 4, NOW(), NOW()),
-('https://picsum.photos/200/300?random=16', 4, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/4b/2d/03/4b2d03491b9441132ce4139c773643e0.jpg', 5, NOW(), NOW()),
-('https://picsum.photos/200/300?random=17', 5, NOW(), NOW()),
-('https://picsum.photos/200/300?random=18', 5, NOW(), NOW()),
-('https://picsum.photos/200/300?random=19', 5, NOW(), NOW()),
-('https://picsum.photos/200/300?random=20', 5, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/bf/46/83/bf4683927abe7fcff5943d36eadc38b1.jpg', 6, NOW(), NOW()),
-('https://picsum.photos/200/300?random=21', 6, NOW(), NOW()),
-('https://picsum.photos/200/300?random=22', 6, NOW(), NOW()),
-('https://picsum.photos/200/300?random=23', 6, NOW(), NOW()),
-('https://picsum.photos/200/300?random=24', 6, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/f8/e5/7d/f8e57da0d7212bcd9964e9f9d6c176f1.jpg', 7, NOW(), NOW()),
-('https://picsum.photos/200/300?random=25', 7, NOW(), NOW()),
-('https://picsum.photos/200/300?random=26', 7, NOW(), NOW()),
-('https://picsum.photos/200/300?random=27', 7, NOW(), NOW()),
-('https://picsum.photos/200/300?random=28', 7, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/b4/42/1d/b4421d62f0c1c2bf77cfee32e4ea2d76.jpg', 8, NOW(), NOW()),
-('https://picsum.photos/200/300?random=29', 8, NOW(), NOW()),
-('https://picsum.photos/200/300?random=30', 8, NOW(), NOW()),
-('https://picsum.photos/200/300?random=31', 8, NOW(), NOW()),
-('https://picsum.photos/200/300?random=32', 8, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/8a/ca/b5/8acab5f315461ddb9e0393dae2865cca.jpg', 9, NOW(), NOW()),
-('https://picsum.photos/200/300?random=33', 9, NOW(), NOW()),
-('https://picsum.photos/200/300?random=34', 9, NOW(), NOW()),
-('https://picsum.photos/200/300?random=35', 9, NOW(), NOW()),
-('https://picsum.photos/200/300?random=36', 9, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/4b/2d/03/4b2d03491b9441132ce4139c773643e0.jpg', 10, NOW(), NOW()),
-('https://picsum.photos/200/300?random=37', 10, NOW(), NOW()),
-('https://picsum.photos/200/300?random=38', 10, NOW(), NOW()),
-('https://picsum.photos/200/300?random=39', 10, NOW(), NOW()),
-('https://picsum.photos/200/300?random=40', 10, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/bf/46/83/bf4683927abe7fcff5943d36eadc38b1.jpg', 11, NOW(), NOW()),
-('https://picsum.photos/200/300?random=41', 11, NOW(), NOW()),
-('https://picsum.photos/200/300?random=42', 11, NOW(), NOW()),
-('https://picsum.photos/200/300?random=43', 11, NOW(), NOW()),
-('https://picsum.photos/200/300?random=44', 11, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/f8/e5/7d/f8e57da0d7212bcd9964e9f9d6c176f1.jpg', 12, NOW(), NOW()),
-('https://picsum.photos/200/300?random=45', 12, NOW(), NOW()),
-('https://picsum.photos/200/300?random=46', 12, NOW(), NOW()),
-('https://picsum.photos/200/300?random=47', 12, NOW(), NOW()),
-('https://picsum.photos/200/300?random=48', 12, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/b4/42/1d/b4421d62f0c1c2bf77cfee32e4ea2d76.jpg', 13, NOW(), NOW()),
-('https://picsum.photos/200/300?random=49', 13, NOW(), NOW()),
-('https://picsum.photos/200/300?random=50', 13, NOW(), NOW()),
-('https://picsum.photos/200/300?random=51', 13, NOW(), NOW()),
-('https://picsum.photos/200/300?random=52', 13, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/8a/ca/b5/8acab5f315461ddb9e0393dae2865cca.jpg', 14, NOW(), NOW()),
-('https://picsum.photos/200/300?random=53', 14, NOW(), NOW()),
-('https://picsum.photos/200/300?random=54', 14, NOW(), NOW()),
-('https://picsum.photos/200/300?random=55', 14, NOW(), NOW()),
-('https://picsum.photos/200/300?random=56', 14, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/4b/2d/03/4b2d03491b9441132ce4139c773643e0.jpg', 15, NOW(), NOW()),
-('https://picsum.photos/200/300?random=57', 15, NOW(), NOW()),
-('https://picsum.photos/200/300?random=58', 15, NOW(), NOW()),
-('https://picsum.photos/200/300?random=59', 15, NOW(), NOW()),
-('https://picsum.photos/200/300?random=60', 15, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/bf/46/83/bf4683927abe7fcff5943d36eadc38b1.jpg', 16, NOW(), NOW()),
-('https://picsum.photos/200/300?random=61', 16, NOW(), NOW()),
-('https://picsum.photos/200/300?random=62', 16, NOW(), NOW()),
-('https://picsum.photos/200/300?random=63', 16, NOW(), NOW()),
-('https://picsum.photos/200/300?random=64', 16, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/f8/e5/7d/f8e57da0d7212bcd9964e9f9d6c176f1.jpg', 17, NOW(), NOW()),
-('https://picsum.photos/200/300?random=65', 17, NOW(), NOW()),
-('https://picsum.photos/200/300?random=66', 17, NOW(), NOW()),
-('https://picsum.photos/200/300?random=67', 17, NOW(), NOW()),
-('https://picsum.photos/200/300?random=68', 17, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/b4/42/1d/b4421d62f0c1c2bf77cfee32e4ea2d76.jpg', 18, NOW(), NOW()),
-('https://picsum.photos/200/300?random=69', 18, NOW(), NOW()),
-('https://picsum.photos/200/300?random=70', 18, NOW(), NOW()),
-('https://picsum.photos/200/300?random=71', 18, NOW(), NOW()),
-('https://picsum.photos/200/300?random=72', 18, NOW(), NOW()),
-
-('https://i.pinimg.com/474x/8a/ca/b5/8acab5f315461ddb9e0393dae2865cca.jpg', 19, NOW(), NOW()),
-('https://picsum.photos/200/300?random=73', 19, NOW(), NOW()),
-('https://picsum.photos/200/300?random=74', 19, NOW(), NOW()),
-('https://picsum.photos/200/300?random=75', 19, NOW(), NOW()),
-('https://picsum.photos/200/300?random=76', 19, NOW(), NOW()),
-
-('https://i.pinimg.com/236x/4b/2d/03/4b2d03491b9441132ce4139c773643e0.jpg', 20, NOW(), NOW()),
-('https://picsum.photos/200/300?random=77', 20, NOW(), NOW()),
-('https://picsum.photos/200/300?random=78', 20, NOW(), NOW()),
-('https://picsum.photos/200/300?random=79', 20, NOW(), NOW()),
-('https://picsum.photos/200/300?random=80', 20, NOW(), NOW());
+('https://i.pinimg.com/236x/15/57/ee/1557eea27c5464d66cf473626581d375.jpg', 3, NOW(), NOW()),
+('https://i.pinimg.com/236x/26/be/56/26be56634ad9773c9d8f6315cac2cba7.jpg', 4, NOW(), NOW()),
+('https://i.pinimg.com/236x/ca/da/16/cada163f9677583b8b2cbea353fbf840.jpg', 5, NOW(), NOW()),
+('https://i.pinimg.com/236x/9b/f5/52/9bf55229275659bf3c089fd2e3375f7f.jpg', 6, NOW(), NOW()),
+('https://i.pinimg.com/236x/d0/31/57/d031577b602ddbb4dddf2bdae414c1e2.jpg', 7, NOW(), NOW()),
+('https://i.pinimg.com/236x/91/15/5f/91155fd0eacabb90941b03893966ba09.jpg', 8, NOW(), NOW()),
+('https://i.pinimg.com/236x/48/66/14/48661430941e4eedbb6f02cb43e69748.jpg', 9, NOW(), NOW()),
+('https://i.pinimg.com/236x/48/af/12/48af129c5a11d4b4a60ed99301ea00ab.jpg', 10, NOW(), NOW()),
+('https://i.pinimg.com/236x/f7/ca/bf/f7cabfd0387fe6d6136d145234521587.jpg', 11, NOW(), NOW()),
+('https://i.pinimg.com/236x/10/91/33/1091338b70475c9e85e73f9bdf1bbda8.jpg', 12, NOW(), NOW()),
+('https://i.pinimg.com/236x/87/26/17/872617ef006438c5e91480819f86c630.jpg', 13, NOW(), NOW()),
+('https://i.pinimg.com/236x/df/0c/05/df0c052e658bc90fe6d2e25f6e69c0b9.jpg', 14, NOW(), NOW()),
+('https://i.pinimg.com/236x/c6/bc/10/c6bc1030e55269382e4ec8dddfa6590e.jpg', 15, NOW(), NOW()),
+('https://i.pinimg.com/736x/3d/78/c7/3d78c71b0f5657e6514a71c1a385a901.jpg', 16, NOW(), NOW()),
+('https://i.pinimg.com/236x/8e/56/79/8e567935daa4d66d04bfdb52ed19410e.jpg', 17, NOW(), NOW()),
+('https://i.pinimg.com/236x/5d/79/c0/5d79c0b7994fdb428c61d3f447d41e84.jpg', 18, NOW(), NOW()),
+('https://i.pinimg.com/236x/a6/bd/d0/a6bdd0b341dfe15c247bc8a49cade9dd.jpg', 19, NOW(), NOW()),
+('https://i.pinimg.com/236x/e8/4a/4f/e84a4f3a426513a7858e86346994f551.jpg', 20, NOW(), NOW());
 
 -- Insert dummy data into `carts` table
 INSERT INTO `marchina`.`carts` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
@@ -226,6 +140,8 @@ INSERT INTO `marchina`.`carts` (`productid`, `userid`, `createdAt`, `updatedAt`)
 
 -- Insert dummy data into `ratings` table
 INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, `updatedAt`) VALUES
+<<<<<<< HEAD
+=======
 (5, 1, 1, NOW(), NOW()), (4, 2, 2, NOW(), NOW()), (3, 3, 3, NOW(), NOW()),
 (5, 4, 4, NOW(), NOW()), (4, 5, 5, NOW(), NOW()), (5, 6, 6, NOW(), NOW()),
 (3, 7, 7, NOW(), NOW()), (4, 8, 8, NOW(), NOW()), (5, 9, 9, NOW(), NOW()),
@@ -233,6 +149,7 @@ INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, 
 (4, 13, 13, NOW(), NOW()), (5, 14, 14, NOW(), NOW()), (3, 15, 15, NOW(), NOW()),
 (4, 16, 1, NOW(), NOW()), (5, 17, 2, NOW(), NOW()), (3, 18, 3, NOW(), NOW()),
 (4, 19, 4, NOW(), NOW()), (5, 20, 5, NOW(), NOW());
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 (5, 1, 1, NOW(), NOW()), (4, 2, 2, NOW(), NOW()), (3, 3, 3, NOW(), NOW()),
 (5, 4, 4, NOW(), NOW()), (4, 5, 5, NOW(), NOW()), (5, 6, 6, NOW(), NOW()),
 (3, 7, 7, NOW(), NOW()), (4, 8, 8, NOW(), NOW()), (5, 9, 9, NOW(), NOW()),
@@ -243,6 +160,8 @@ INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, 
 
 -- Insert dummy data into `wishlists` table
 INSERT INTO `marchina`.`wishlists` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
+<<<<<<< HEAD
+=======
 (1, 1, NOW(), NOW()), (2, 2, NOW(), NOW()), (3, 3, NOW(), NOW()),
 (4, 4, NOW(), NOW()), (5, 5, NOW(), NOW()), (6, 6, NOW(), NOW()),
 (7, 7, NOW(), NOW()), (8, 8, NOW(), NOW()), (9, 9, NOW(), NOW()),
@@ -250,6 +169,7 @@ INSERT INTO `marchina`.`wishlists` (`productid`, `userid`, `createdAt`, `updated
 (13, 13, NOW(), NOW()), (14, 14, NOW(), NOW()), (15, 15, NOW(), NOW()),
 (16, 1, NOW(), NOW()), (17, 2, NOW(), NOW()), (18, 3, NOW(), NOW()),
 (19, 4, NOW(), NOW()), (20, 5, NOW(), NOW());
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 (1, 1, NOW(), NOW()), (2, 2, NOW(), NOW()), (3, 3, NOW(), NOW()),
 (4, 4, NOW(), NOW()), (5, 5, NOW(), NOW()), (6, 6, NOW(), NOW()),
 (7, 7, NOW(), NOW()), (8, 8, NOW(), NOW()), (9, 9, NOW(), NOW()),

@@ -1,15 +1,9 @@
-const {  
-    deleteCart,addCart,getCartProducts
-  }=require('../../controller/whishlistController/CartController')
-const cartRouter=require('express').Router()
+const express = require('express');
+const cartRouter = express.Router();
+const { deleteCart, addCart, getCartProducts } = require('../../controller/whishlistController/CartController');
 
+cartRouter.post('/add', addCart);
+cartRouter.get('/:userid', getCartProducts);
+cartRouter.delete('/:cartid', deleteCart);
 
-
-
-
-cartRouter.post('/addCart',addCart)
-cartRouter.get('/:userid',getCartProducts)
-cartRouter.delete('/:cartid',deleteCart)
-
-
-module.exports={cartRouter}
+module.exports = { cartRouter };

@@ -1,8 +1,4 @@
-
-
 const { db } = require('../../database/index')
-
-
 
 async function getCartProducts(req, res) {
   try {
@@ -19,8 +15,8 @@ async function getCartProducts(req, res) {
       include: [
         {
           model: db.Product,
-          include:{
-            model:db.Image,
+          include: {
+            model: db.Image,
           }
         },
         {
@@ -36,41 +32,40 @@ async function getCartProducts(req, res) {
   }
 }
 
-const addCart=async(req,res)=>{
+const addCart = async (req, res) => {
   try {
-    const {userid,productid}=req.body
-    await db.Cart.create({userid,productid});
-    res.status(200).send('Product added to Cart');
-  }
-   catch (error) {
-    console.log('Error adding product to Cart:', error);
+    const { userid, productid } = req.body
+    const newCartItem = await db.Cart.create({ userid, productid });
+    res.status(201).send({ message: 'Product added to Cart', cartItem: newCartItem });
+  } catch (error) {
+    console.error('Error adding product to Cart:', error);
     res.status(500).send({ error: 'An error occurred while adding product to Cart' });
   }
 };
 
+const deleteCart = async (req, res) => {
+  try {
+    const cartId = req.params.cartid;
 
-  const deleteCart = async (req, res) => {
-    try {
-      let cartId = req.params.id; 
-  
-     
-      await db.Cart.destroy({
-        where: {
-          cartid: cartId 
-        }
-      });
-  
-      res.status(200).send('Deleted all cart  for userId: ' + cartId);
-    } catch (error) {
-      console.error(error);
-      
+    const deletedCount = await db.Cart.destroy({
+      where: {
+        cartid: cartId
+      }
+    });
+
+    if (deletedCount === 0) {
+      return res.status(404).send({ error: 'Cart item not found' });
     }
-  };
 
-  
-
-
-
-  module.exports={
-    deleteCart,addCart,getCartProducts
+    res.status(200).send({ message: 'Cart item deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting cart item:', error);
+    res.status(500).send({ error: 'An error occurred while deleting the cart item' });
   }
+};
+
+module.exports = {
+  getCartProducts,
+  addCart,
+  deleteCart
+}
