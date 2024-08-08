@@ -79,7 +79,7 @@ const AddProd: React.FC = () => {
       const res = await axios.post('/api/uploadImage', { image: base64 });
       setUrl(res.data);
       if (res.data) {
-        await axios.post(`/api/product/images/${productId}`, { imageurl: res.data });
+        await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: res.data });
       } else {
         console.error('No URL received from image upload');
       }
@@ -93,7 +93,7 @@ const AddProd: React.FC = () => {
       const res = await axios.post('/api/uploadMultipleImages', { images });
       setUrl(res.data);
       if (res.data) {
-        await axios.post(`/api/product/images/${productId}`, { imageurl: JSON.stringify(res.data) });
+        await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: JSON.stringify(res.data) });
       } else {
         console.error('No URL received from image upload');
       }

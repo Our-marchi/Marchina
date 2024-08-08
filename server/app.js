@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 const cors = require("cors");
 const {whishListRouter} = require('./Router/whislistRouter/whishlistRouter.js')
 const{cartRouter}=require('./Router/whislistRouter/CartRouter.js')
@@ -12,13 +13,16 @@ const app = express();
 const port = 5000;
 
 
+
+
+
 app.use(cors());
-app.use(express.json({ limit: "25mb" }));
+app.use(express.json());
 app.use(express.urlencoded({ limit: "25mb" }));
 
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  console.log(`Received ${req.method} request to ${req.url}`);
   next();
 });
 

@@ -17,9 +17,6 @@ INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `r
 ('Sofia', 'Martinez', 'sofia.martinez@example.com', 'password123', 'buyer', '951 Willow Dr, Springfield', NOW(), NOW(), 'active');
 
 -- Insert dummy data into `products` table
-<<<<<<< HEAD
-INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `categorie`, `userid`, `createdAt`, `updatedAt`) VALUES
-=======
 INSERT INTO `marchina`.`users` (`firstName`, `lastName`, `email`, `password`, `role`, `adress`, `createdAt`, `updatedAt`) VALUES
 ('John', 'Doe', 'john.doe@example.com', 'password123', 'admin', '123 Main St, Springfield', NOW(), NOW()),
 ('Jane', 'Smith', 'jane.smith@example.com', 'password123', 'user', '456 Elm St, Springfield', NOW(), NOW()),
@@ -74,7 +71,6 @@ INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `cat
 ('Portable Charger', '20000mAh portable charger with fast charging capabilities.', 49.99, 200, 'Mobile Accessories', 14, NOW(), NOW()),
 ('Smart Light Bulbs', 'Color-changing smart light bulbs compatible with voice assistants.', 34.99, 300, 'Smart Home', 15, NOW(), NOW()),
 ('Noise-Canceling Headphones', 'Over-ear noise-canceling headphones with premium sound quality.', 249.99, 50, 'Audio', 1, NOW(), NOW());
->>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 ('4K Ultra HD TV', 'A stunning 4K Ultra HD TV with vibrant colors and crisp details.', 799.99, 50, 'Electronics', 1, NOW(), NOW()),
 ('Wireless Earbuds', 'Compact and comfortable wireless earbuds with noise-canceling features.', 129.99, 100, 'Accessories', 2, NOW(), NOW()),
 ('Gaming Laptop', 'High-performance gaming laptop with the latest graphics card and processor.', 1499.99, 30, 'Computers', 1, NOW(), NOW()),
@@ -98,16 +94,12 @@ INSERT INTO `marchina`.`products` (`name`, `description`, `price`, `stock`, `cat
 
 -- Insert dummy data into `images` table
 INSERT INTO `marchina`.`images` (`imageurl`, `productid`, `createdAt`, `updatedAt`) VALUES
-<<<<<<< HEAD
-('https://tinyurl.com/53kmt8wk', 1, NOW(), NOW()),
-=======
 ('https://i.pinimg.com/236x/bf/46/83/bf4683927abe7fcff5943d36eadc38b1.jpg', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=1', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=2', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=3', 1, NOW(), NOW()),
 ('https://picsum.photos/200/300?random=4', 1, NOW(), NOW()),
 
->>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 ('https://i.pinimg.com/474x/f8/e5/7d/f8e57da0d7212bcd9964e9f9d6c176f1.jpg', 2, NOW(), NOW()),
 ('https://i.pinimg.com/236x/15/57/ee/1557eea27c5464d66cf473626581d375.jpg', 3, NOW(), NOW()),
 ('https://i.pinimg.com/236x/26/be/56/26be56634ad9773c9d8f6315cac2cba7.jpg', 4, NOW(), NOW()),
@@ -140,8 +132,6 @@ INSERT INTO `marchina`.`carts` (`productid`, `userid`, `createdAt`, `updatedAt`)
 
 -- Insert dummy data into `ratings` table
 INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, `updatedAt`) VALUES
-<<<<<<< HEAD
-=======
 (5, 1, 1, NOW(), NOW()), (4, 2, 2, NOW(), NOW()), (3, 3, 3, NOW(), NOW()),
 (5, 4, 4, NOW(), NOW()), (4, 5, 5, NOW(), NOW()), (5, 6, 6, NOW(), NOW()),
 (3, 7, 7, NOW(), NOW()), (4, 8, 8, NOW(), NOW()), (5, 9, 9, NOW(), NOW()),
@@ -149,7 +139,6 @@ INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, 
 (4, 13, 13, NOW(), NOW()), (5, 14, 14, NOW(), NOW()), (3, 15, 15, NOW(), NOW()),
 (4, 16, 1, NOW(), NOW()), (5, 17, 2, NOW(), NOW()), (3, 18, 3, NOW(), NOW()),
 (4, 19, 4, NOW(), NOW()), (5, 20, 5, NOW(), NOW());
->>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 (5, 1, 1, NOW(), NOW()), (4, 2, 2, NOW(), NOW()), (3, 3, 3, NOW(), NOW()),
 (5, 4, 4, NOW(), NOW()), (4, 5, 5, NOW(), NOW()), (5, 6, 6, NOW(), NOW()),
 (3, 7, 7, NOW(), NOW()), (4, 8, 8, NOW(), NOW()), (5, 9, 9, NOW(), NOW()),
@@ -160,8 +149,6 @@ INSERT INTO `marchina`.`ratings` (`rating`, `productid`, `userid`, `createdAt`, 
 
 -- Insert dummy data into `wishlists` table
 INSERT INTO `marchina`.`wishlists` (`productid`, `userid`, `createdAt`, `updatedAt`) VALUES
-<<<<<<< HEAD
-=======
 (1, 1, NOW(), NOW()), (2, 2, NOW(), NOW()), (3, 3, NOW(), NOW()),
 (4, 4, NOW(), NOW()), (5, 5, NOW(), NOW()), (6, 6, NOW(), NOW()),
 (7, 7, NOW(), NOW()), (8, 8, NOW(), NOW()), (9, 9, NOW(), NOW()),
@@ -169,7 +156,6 @@ INSERT INTO `marchina`.`wishlists` (`productid`, `userid`, `createdAt`, `updated
 (13, 13, NOW(), NOW()), (14, 14, NOW(), NOW()), (15, 15, NOW(), NOW()),
 (16, 1, NOW(), NOW()), (17, 2, NOW(), NOW()), (18, 3, NOW(), NOW()),
 (19, 4, NOW(), NOW()), (20, 5, NOW(), NOW());
->>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
 (1, 1, NOW(), NOW()), (2, 2, NOW(), NOW()), (3, 3, NOW(), NOW()),
 (4, 4, NOW(), NOW()), (5, 5, NOW(), NOW()), (6, 6, NOW(), NOW()),
 (7, 7, NOW(), NOW()), (8, 8, NOW(), NOW()), (9, 9, NOW(), NOW()),

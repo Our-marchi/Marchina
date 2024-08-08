@@ -1,4 +1,6 @@
-const router=require('express').Router()
+
+const express=require('express')
+const router=express.Router();
 
 const {signUp,logIn,deleteuser,updateUser,updatePassword,getAllUsers}=require('../../controller/userController/userController')
 
