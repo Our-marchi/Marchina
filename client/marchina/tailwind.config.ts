@@ -5,7 +5,11 @@ import aspectRatio from '@tailwindcss/aspect-ratio'
 
 const config: Config = {
   content: [
+<<<<<<< HEAD
     './src/*/.{js,jsx,ts,tsx}', 
+=======
+    './src/**/*.{js,jsx,ts,tsx}', 
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
   ],
   theme: {
     extend: {
@@ -39,7 +43,11 @@ const config: Config = {
         'sky': {
           100: '#e0f2fe',
         },
+<<<<<<< HEAD
 'red': {
+=======
+        'red': {
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
           500: '#ef4444',
           600: '#dc2626',
         },
@@ -67,7 +75,11 @@ const config: Config = {
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
         '5xl': ['3rem', { lineHeight: '1' }],
       },
+<<<<<<< HEAD
 spacing: {
+=======
+      spacing: {
+>>>>>>> f2b36e80e0e722e0e498f0eabe6a3612d1941035
         '72': '18rem',
         '80': '20rem',
         '96': '24rem',
