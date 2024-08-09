@@ -18,12 +18,12 @@ export default function Home() {
       <div>
         <Navbar/>
          <main>
-             <About/>
+             {/* <About/> */}
              {/* <Wishlist/> */}
   {/* <ErrorPage/> */}
  {/* < ProductDetailsPage/> */}
-      {/* <Homepage /> /}
-        {/ <Cart/> */}
+      <Homepage />
+        {/* <Cart/> */}
         {/* <AllProducts/> */} 
         {/* <ContactForm /> */}
        {/* <Homepage />  */}
