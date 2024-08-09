@@ -9,15 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@tailwindcss/typography": "^0.5.13",
     "axios": "^1.7.3",
+    "framer-motion": "^11.3.24",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "next": "14.2.5",
-    "react": "^18",
-    "react-dom": "^18"
+    "next-navigation": "^1.0.6",
+    "npm": "^10.8.2",
+    "react": "^18.3.1",
+    "react-dom": "^18",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
+    "@types/jwt-decode": "^3.1.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -25,6 +34,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8.4.41",
+    "postcss-preset-env": "^7.8.3",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.4"
   }
