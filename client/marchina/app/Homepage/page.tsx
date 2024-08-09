@@ -12,6 +12,7 @@ import ExploreProducts from './ExploreProducts/page';
 import FilteredProducts from './FilterProduct/page';
 import NewArrival from './NewArrival/page';
 import Footer from './Footer/page';
+import Navbar from './Navbar/page';
 
 type Product = {
   productid: string;
