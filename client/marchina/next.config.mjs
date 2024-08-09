@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
         port: '',
-        pathname: '/',
+        pathname: '/**',
       },
     ],
     domains:['via.placeholder.com','localhost','play-lh.googleusercontent.com','images.unsplash.com', 'play-lh.googleusercontent.com'],

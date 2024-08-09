@@ -1,18 +1,33 @@
-import Image from "next/image";
-import Contact from "./contact/page";
+import React from "react";
+import Navbar from './Homepage/Navbar/page';
+import Homepage from './Homepage/page';
+import Footer from './Homepage/Footer/page';
+import Cart from '../app/Cart/page'
+import AllProducts from './AllProducts/page';
+
 import ProductDetailsPage from "./ProductDetailsPage/page"
 import ErrorPage from "./ErrorPage/page";
 import About from "./About/page";
 import Wishlist from "./Wishlist/page";
 export default function Home() {
-  return (
-    <main>
-      <Wishlist/>
- {/* <About/> */}
+ 
+
+    return (
+      <div>
+        <Navbar/>
+         <main>
+             {/* <About/> */}
+             {/* <Wishlist/> */}
   {/* <ErrorPage/> */}
  {/* < ProductDetailsPage/> */}
- 
-</main>
+      {/* <Homepage /> /}
+        {/ <Cart/> */}
+        {/* <AllProducts/> */}
+      </main>
+      <Footer/>
+      </div>
+    );
+      
 
-  );
-}
+   
+  }

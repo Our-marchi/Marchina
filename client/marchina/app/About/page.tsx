@@ -66,7 +66,7 @@ interface TeamMember {
   const renderStatistic = (stat: Statistic, index: number): JSX.Element => (
     <motion.div 
       key={index} 
-      className={`p-6 rounded-lg 'bg-red-500 text-white' : 'bg-white border border-gray-200'}`}
+      className={`p-6 rounded-lg  'bg-red-500 text-white' : 'bg-white border border-gray-200'}`}
       whileHover={{ 
         scale: 1.05, 
         boxShadow: "0 10px 20px rgba(0,0,0,0.1)",

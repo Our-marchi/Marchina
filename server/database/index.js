@@ -16,9 +16,8 @@ db.Rating=require('../database/model/Ratingmodel.js')(sequelize,DataTypes)
 
 
 
-db.User.hasMany(db.Cart,{foreignKey:'userid'})
-db.Cart.belongsTo(db.User,{foreignKey:'userid'})
-
+db.User.hasMany(db.Cart, { foreignKey: 'userid' })
+db.Cart.belongsTo(db.User, { foreignKey: 'userid' })
 
 db.User.hasMany(db.Product,{foreignKey:'userid'})
 db.Product.belongsTo(db.User,{foreignKey:'userid'})
@@ -35,8 +34,8 @@ db.Rating.belongsTo(db.User,{foreignKey:'userid'})
 
 
 
-db.Product.hasMany(db.Cart,{foreignKey:'productid'})
-db.Cart.belongsTo(db.Product,{foreignKey:'productid'})
+db.Product.hasMany(db.Cart, { foreignKey: 'productid' })
+db.Cart.belongsTo(db.Product, { foreignKey: 'productid' })
 
 
 
