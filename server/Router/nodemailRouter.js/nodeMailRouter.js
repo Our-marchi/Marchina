@@ -29,9 +29,10 @@ function sendEmail({ name, recipient_email, subject, message }) {
   <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
     <h2>Thank you for reaching out</h2>
     <p>Dear ${name},</p>
-    <p>We have received your message regarding "${subject}". Our team will review your inquiry and get back to you as soon as possible.</p>
+    <p>We have received your message regarding . Our team will review your order and get back to you as soon as possible.</p>
     <p>Thank you for your patience.</p>
     <p>Best regards,<br>Customer Support Team</p>
+    
   </div>
 </body>
 </html>`,
