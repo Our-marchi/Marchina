@@ -66,11 +66,11 @@ const Navbar: React.FC = () => {
           </div>
           <div className="flex items-center gap-12">
             <div className="relative group">
-              <Link href="/" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Home</Link>
+              <Link href="/Homepage" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Home</Link>
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
             <div className="relative group">
-              <Link href="/Contact" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Contact</Link>
+              <Link href="/contact" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Contact</Link>
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
             <div className="relative group">
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
             <div className="relative group">
-              {!role && <Link href="/Signup" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
+              {!role && <Link href="/SinUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
           </div>
@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg z-10">
                   <div className="flex flex-col p-4">
-                    {!role && <button onClick={() => router.push('/Login')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
+                    {!role && <button onClick={() => router.push('/LogIn')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
                     {role && <button onClick={() => router.push('/Update')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Profile</button>}
                     {role && <button onClick={handleLogout} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Logout</button>}
                     {role === 'admin' && <button onClick={() => router.push('/admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>}
