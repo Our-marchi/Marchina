@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -17,11 +18,26 @@ const Login: React.FC = () => {
       const response = await axios.post<{ token: string }>("http://localhost:5000/api/user/logIn", { email, password });
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
-      router.push("/");
-      console.log("Login successful");
-      console.log(localStorage.getItem("token"));
+      
+      Swal.fire({
+        icon: 'success',
+        title: 'Login Successful',
+        text: 'Welcome back!',
+        confirmButtonColor: 'black',
+        confirmButtonText: 'Continue',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push("/HomePage");
+        }
+      });
     } catch (error) {
       console.log("Login error:", error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Login Failed',
+        text: 'Invalid email or password. Please try again.',
+        confirmButtonColor: 'red',
+      });
     }
   };
 

@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FiHeart, FiArrowLeft, FiArrowRight } from 'react-icons/fi';
+import axios from 'axios';
 
 type Product = {
   productid: string;
@@ -19,21 +20,33 @@ type ExploreProductsProps = {
 }
 
 const ExploreProducts: React.FC<ExploreProductsProps> = ({ products }) => {
-  console.log('Number of products:', products.length);
+  const [visibleProducts, setVisibleProducts] = useState(8);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const router = useRouter();
 
-  const handleAddToCart = (product: Product) => {
-    // Implement your add to cart logic here
-    console.log(`Added ${product.name} to cart`);
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/product/getall');
+        setAllProducts(response.data.products);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleImageClick = (product: Product) => {
     router.push(`/product/${product.productid}`);
   };
 
   const handleFavorite = (product: Product) => {
-    // Implement your favorite logic here
     console.log(`Added ${product.name} to favorites`);
+  };
+
+  const handleAddToCart = (product: Product) => {
+    console.log(`Added ${product.name} to cart`);
   };
 
   return (
@@ -41,40 +54,47 @@ const ExploreProducts: React.FC<ExploreProductsProps> = ({ products }) => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Explore Our Products</h2>
         <div className="flex space-x-2">
-          <button className="p-2 border rounded-full hover:bg-gray-100 transition-colors">
+          <button
+            className="p-2 border rounded-full hover:bg-gray-100 transition-colors"
+            onClick={() => setVisibleProducts((prev) => Math.max(prev - 8, 8))}
+          >
             <FiArrowLeft className="text-gray-600" />
           </button>
-          <button className="p-2 border rounded-full hover:bg-gray-100 transition-colors">
+          <button
+            className="p-2 border rounded-full hover:bg-gray-100 transition-colors"
+            onClick={() => setVisibleProducts((prev) => Math.min(prev + 8, allProducts.length))}
+          >
             <FiArrowRight className="text-gray-600" />
           </button>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.map((product) => (
+        {allProducts.slice(0, visibleProducts).map((product) => (
           <div key={product.productid} className="border rounded-lg p-4 relative">
             <div className="relative h-48 mb-2 group">
-              <Image 
-                className="object-cover cursor-pointer rounded" 
-                src={product.images && product.images[0] ? product.images[0].imageurl : 'https://via.placeholder.com/150x150'} 
-                alt={product.name} 
+              <Image
+                className="object-cover cursor-pointer rounded"
+                src={product.images && product.images[0] ? product.images[0].imageurl : 'https://via.placeholder.com/150x150'}
+                alt={product.name}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 style={{ objectFit: 'cover' }}
-                onClick={() => handleImageClick(product)} 
+                onClick={() => handleImageClick(product)}
               />
-              <button 
+              <button
                 className="absolute top-2 right-2 p-1 rounded-full bg-white"
                 onClick={() => handleFavorite(product)}
               >
                 <FiHeart className="text-gray-500 hover:text-red-500" />
               </button>
               <div className="absolute inset-0 flex items-end justify-center bg-black bg-opacity-50 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                <button 
+                <button
                   onClick={(e) => {
                     e.stopPropagation();
                     handleAddToCart(product);
-                  }} 
-                  className="text-white text-base font-medium font-['Poppins'] p-2 bg-black rounded-full hover:bg-gray-800 transition-colors mb-4">
+                  }}
+                  className="text-white text-base font-medium font-['Poppins'] p-2 bg-black rounded-full hover:bg-gray-800 transition-colors mb-4"
+                >
                   Add To Cart
                 </button>
               </div>
@@ -99,9 +119,9 @@ const ExploreProducts: React.FC<ExploreProductsProps> = ({ products }) => {
         ))}
       </div>
       <div className="text-center mt-6">
-        <button 
+        <button
           className="bg-red-500 text-white px-6 py-2 rounded transition duration-300 ease-in-out hover:bg-red-600 hover:shadow-lg"
-          onClick={() => router.push('/all-products')}
+          onClick={() => router.push('/AllProducts')}
         >
           View All Products
         </button>

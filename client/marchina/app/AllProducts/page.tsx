@@ -67,7 +67,7 @@ const AllProducts: React.FC = () => {
       const response = await axios.post('http://localhost:5000/api/cart/add', {
         userId,
         productId: product.productid,
-        quantity: 1, // You can adjust the quantity as needed
+        quantity: 1, 
       });
 
       if (response.status === 200) {
@@ -80,9 +80,9 @@ const AllProducts: React.FC = () => {
     }
   };
 
-  const handleProductDelete = (productId: string) => {
-    setProducts(products.filter(p => p.productid !== productId));
-  };
+  // const handleProductDelete = (productId: string) => {
+  //   setProducts(products.filter(p => p.productid !== productId));
+  // };
 
   const toggleProductDetails = (product: Product) => {
     if (selectedProduct && selectedProduct.productid === product.productid) {
@@ -161,7 +161,6 @@ const AllProducts: React.FC = () => {
                   </div>
                   {/* {(userRole === "admin") && <OneProduct 
                     el={product} 
-                    onUpdate={handleProductUpdate} 
                     onDelete={handleProductDelete}
                   />} */}
                 </div>

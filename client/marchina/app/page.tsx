@@ -1,8 +1,11 @@
+import React from "react";
 import Navbar from './Homepage/Navbar/page';
 import Homepage from './Homepage/page';
 import Footer from './Homepage/Footer/page';
 import Cart from '../app/Cart/page'
 import AllProducts from './AllProducts/page';
+import ContactForm from "./contact/page";
+import AddProd from "./addProduct/page";
 
 
 export default function Home() {
@@ -10,13 +13,15 @@ export default function Home() {
       <div>
         <Navbar/>
          <main>
-      <Homepage />
-        {/* <Cart/> */}
+          {/* <ContactForm /> */}
+       <Homepage /> 
+        {/* {/ <Cart/> */} 
         {/* <AllProducts/> */}
+        {/* <AddProd /> */}
       </main>
       <Footer/>
-    );
-      </div>
     
+      </div>
+
     );
   }
