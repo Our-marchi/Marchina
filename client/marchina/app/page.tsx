@@ -7,21 +7,35 @@ import AllProducts from './AllProducts/page';
 import ContactForm from "./contact/page";
 import AddProd from "./addProduct/page";
 
-
+import ProductDetailsPage from "./ProductDetailsPage/page"
+import ErrorPage from "./ErrorPage/page";
+import About from "./About/page";
+import Wishlist from "./Wishlist/page";
 export default function Home() {
+ 
+
     return (
       <div>
         <Navbar/>
          <main>
-          {/* <ContactForm /> */}
+             <About/>
+             {/* <Wishlist/> */}
+  {/* <ErrorPage/> */}
+ {/* < ProductDetailsPage/> */}
+      {/* <Homepage /> /}
+        {/ <Cart/> */}
+        {/* <AllProducts/> */} 
+        {/* <ContactForm /> */}
        {/* <Homepage />  */}
-        {/* {/ <Cart/> */} 
+    
         {/* <AllProducts/> */}
-        <AddProd />
+        {/* <AddProd /> */}
       </main>
       <Footer/>
     
       </div>
-
     );
+      
+
+   
   }
