@@ -41,6 +41,7 @@ const Wishlist: React.FC = () => {
       setUserId(decodedToken.userid);
     }
   }, []);
+  
 
   const fetchWishlist = async () => {
     try {
@@ -61,7 +62,7 @@ const Wishlist: React.FC = () => {
 
   const addToWishlist = async (productId: number) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/WhishList', {
+      const response = await axios.post('http://localhost:5000/api/WhishList/addWishlist', {
         userid: userId,
         productid: productId
       });

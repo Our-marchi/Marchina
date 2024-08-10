@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
       const decodedToken = jwtDecode(token) as DecodedToken;
       setRole(decodedToken.role);
       console.log(decodedToken);
+      localStorage.setItem('userid',decodedToken.userid)
     }
   }, [refresh]);
 
