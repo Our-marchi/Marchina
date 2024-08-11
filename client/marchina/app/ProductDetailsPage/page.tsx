@@ -4,37 +4,45 @@ import { FaStar, FaHeart } from 'react-icons/fa';
 import { useRouter } from 'next/navigation'; // Use Next.js router
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-
+import { useSearchParams } from 'next/navigation';
 
 // Define TypeScript interfaces for props
-interface Product {
-  productid: string;
-  name: string;
-  categorie: string;
-  description: string;
-  price: number;
-  images: { imageurl: string }[];
-  ratings: { rating: number }[];
-};
+
 
 interface DecodedToken {
   userid: number;
 }
 
-interface ProductDetailsPageProps {
+interface ProductDetailsPage {
   product: Product;
+  
 }
 
+interface Product {
+  productid: string;
+  name: string;
+  reviewsCount: number;
+  categorie: string;
+  description: string;
+  price: number;
+  images: { imageurl: string }[];
+  ratings: { rating: number }[];
+  stock: number;
+};
 
 
-const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({product}) => {
-  const [quantity, setQuantity] = useState(1);
-  const [hover, setHover] = useState<number | null>(null);
-  const [userId, setUserId] = useState<number>(0);
-  const [image, setImage] = useState<string>(product.images[0]?.imageurl || '');
 
+const ProductDetailsPage: React.FC<ProductDetailsPage> = () => {
 
+const params=useSearchParams();
+const data:any=params.get('product')
+const product=JSON.parse(data)
+console.log(data,'test');
   
+const [quantity, setQuantity] = useState(1);
+const [hover, setHover] = useState<number | null>(null);
+const [userId, setUserId] = useState<number>(0);
+const [image, setImage] = useState<string>(product.images[0]?.imageurl || '');
   const router = useRouter();
 
   useEffect(() => {
@@ -47,7 +55,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({product}) => {
 
   const calculateRating = () => {
     let sum = 0;
-    product.ratings.forEach(rating => {
+    product.ratings.forEach((rating:any )=> {
       sum += rating.rating;
     });
     return sum / product.ratings.length;
@@ -182,7 +190,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({product}) => {
             <div className="Line17 w-4 h-px origin-top-left rotate-90 opacity-50 border border-black mx-2"></div>
             <div className="InStock opacity-60 text-green-500 text-sm font-normal font-['Poppins'] leading-tight">In Stock</div>
           </div>
-          <div className="19200 text-black text-2xl font-normal font-['Inter'] leading-normal tracking-wide mt-4">${product.price.toFixed(2)}</div>
+          <div className="19200 text-black text-2xl font-normal font-['Inter'] leading-normal tracking-wide mt-4">${product.price}</div>
           <div className="Playstation5ControllerSkinHighQualityVinylWithAirChannelAdhesiveForEasyBubbleFreeInstallMessFreeRemovalPressureSensitive text-black text-sm font-normal font-['Poppins'] leading-tight mt-4">
             {product.description}
           </div>
@@ -205,7 +213,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({product}) => {
 
           {/* Buy Now, Add to Cart, and Add to Wishlist Buttons */}
           <div className="flex items-center mt-4">
-            <button className="Button px-12 py-2.5 bg-red-500 rounded text-neutral-50 text-base font-medium font-['Poppins'] leading-normal cursor-pointer" onClick={()=>{router.push('/handleBuyNow',)}}>Buy Now </button>
+            <button className="Button px-12 py-2.5 bg-red-500 rounded text-neutral-50 text-base font-medium font-['Poppins'] leading-normal cursor-pointer" onClick={()=>{router.push('/Checkout',)}}>Buy Now </button>
             <button className="Button px-12 py-2.5 bg-blue-500 rounded text-neutral-50 text-base font-medium font-['Poppins'] leading-normal cursor-pointer ml-4" onClick={handleAddToCart}>Add to Cart</button>
             <button className="Button px-4 py-2.5 bg-gray-200 rounded text-black text-base font-medium font-['Poppins'] leading-normal cursor-pointer ml-4 flex items-center" onClick={handleAddToWishlist} >
               <FaHeart className="mr-2" /> Add to Wishlist
@@ -260,7 +268,7 @@ const ProductDetailsPage: React.FC<ProductDetailsPageProps> = ({product}) => {
     </div>
   );
 };
-
+    
 
 
 
