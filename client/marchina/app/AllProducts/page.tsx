@@ -17,6 +17,22 @@ type Product = {
   images: { imageurl: string }[];
 };
 
+interface wishlist {
+  userid:number
+  productid: number;
+  Product: {
+    name: string;
+    price: number;
+    originalPrice?: number;
+    discount?: number;
+    images: { imageurl: string }[];
+    isNew?: boolean;
+    rating?: number;
+    reviewCount?: number;
+  };
+  wishlistid: number;
+}
+
 type DecodedToken = {
   role: string;
 };
@@ -25,7 +41,12 @@ const AllProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [userRole, setUserRole] = useState<string>('');
+<<<<<<< HEAD
   const [userId,setUserId]=useState(2)
+=======
+  const [wishlist, setwishlist] = useState<wishlist[]>([]);
+  const [userId, setUserId] = useState<number | null>(null);
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
   const router = useRouter();
 
   const fetchProducts = async () => {
@@ -37,6 +58,7 @@ const AllProducts: React.FC = () => {
     }
   };
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   const token = localStorage.getItem('token');
   //   if (token) {
@@ -49,9 +71,43 @@ const AllProducts: React.FC = () => {
   //   }
   //   fetchProducts();
   // }, []);
+=======
+  const route=useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode<DecodedToken>(token);
+        
+        setUserRole(decodedToken.role);
+        
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    }
+    fetchProducts();
+  }, []);
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
 
   const handleImageClick = (product: Product) => {
     setSelectedProduct(product);
+  };
+
+  
+  const addToWishlist = async ( productId: string ) => {
+    const userid = localStorage.getItem("userid")
+    try {
+      const response = await axios.post('http://localhost:5000/api/WhishList/addWishlist', {
+       
+        userid :userid,
+        productid:productId
+      });
+      setwishlist(response.data);
+      
+    } catch (error) {
+      console.error("Error adding product to wishlist", error);
+    }
   };
 
   const handleAddToCart = async (product: Product) => {
@@ -125,10 +181,12 @@ const AllProducts: React.FC = () => {
                     </div>
                     <div className="absolute top-2 right-2 flex gap-2">
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                        <FaHeart className="text-black" />
+                        <FaHeart className="text-black" onClick={() =>  {addToWishlist(product.productid)}}/>
+                         
+                          
                       </div>
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                        <FaEye onClick={() => router.push(`/Product?productid=${product.productid}`)} className="text-black" />
+                        <FaEye onClick={() => router.push(`'/Product?productid=${product.productid}`)} className="text-black" />
                       </div>
                     </div>
                   </div>

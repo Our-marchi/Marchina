@@ -2,7 +2,7 @@ const { db } = require('../../database/index');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET;
 
 
 const signUp = async (req, res) => {
@@ -41,14 +41,13 @@ const secret = "hellohibye"
                 adress: newUser.adress,
                 status: newUser.status,
                 lastName: newUser.lastName
-            }, secret
-         
-        );
-        console.log('JWT signed successfully');
+            },secret)
+          
+        console.log('JWT signed successfully')
         res.status(201).send(token);
     } catch (err) {
         console.error('Detailed error in signUp:', err);
-        
+       
     }
 };
 

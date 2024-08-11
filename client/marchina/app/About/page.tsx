@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaStore, FaChartLine, FaUsers, FaDollarSign, FaTruck, FaHeadset, FaShieldAlt, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { IconType } from 'react-icons';
+import { useRouter } from 'next/navigation'
 
 const About: React.FC = () => {
     
@@ -27,7 +28,7 @@ interface TeamMember {
     icon: IconType;
   }
 
-
+const router=useRouter()
   
   const teamMembers: TeamMember[] = [
     { name: "Tom Cruise", role: "Founder & Chairman", image: "https://play-lh.googleusercontent.com/ai7FC9zp1bG8zLcl97w9rNde_oZ5s086XP1ZkBFdwf72d_owIiUVJu1-XNp6eOO-AGg" },
@@ -97,7 +98,7 @@ interface TeamMember {
   return (
     <div className="container mx-auto px-4 py-8">
       <nav className="flex items-center space-x-2 mb-8 text-sm">
-        <span className="text-gray-500">Home</span>
+        <span className="text-gray-500" onClick={()=>{router.push('/')}}>Home</span>
         <span className="text-gray-300">/</span>
         <span className="text-gray-900">About</span>
       </nav>

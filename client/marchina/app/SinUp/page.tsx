@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Swal from 'sweetalert2';
 
+
 const SignUp: React.FC = () => {
   const router = useRouter();
   const [firstName, setFirstName] = useState<string>("");
@@ -27,7 +28,10 @@ const SignUp: React.FC = () => {
       });
       console.log("success");
       
+<<<<<<< HEAD
       
+=======
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
       if (response.data) {
         Swal.fire({
           icon: 'success',

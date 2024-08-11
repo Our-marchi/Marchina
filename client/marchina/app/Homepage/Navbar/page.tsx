@@ -19,6 +19,7 @@ const Navbar: React.FC = () => {
   // const [id,setId]=useState<[] >([])
   const [id,setId]=useState(2)
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   const token = localStorage.getItem('token');
   //   if (token) {
@@ -28,6 +29,17 @@ const Navbar: React.FC = () => {
   //     console.log(decodedToken);
   //   }
   // }, [refresh]);
+=======
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token) as DecodedToken;
+      setRole(decodedToken.role);
+      console.log(decodedToken);
+      localStorage.setItem('userid',decodedToken.userid)
+    }
+  }, [refresh]);
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
