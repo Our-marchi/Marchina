@@ -1,48 +1,36 @@
 'use client'
-
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaHeart, FaShoppingCart, FaUser, FaAngleDown } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import { jwtDecode } from 'jwt-decode';
 import Link from 'next/link';
-
-type DecodedToken = {
-  role: string;
-  [key: string]: any;
-}
 
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [role, setRole] = useState<string>('');
   const router = useRouter();
   const [refresh, setRefresh] = useState<boolean>(false);
-  // const [id,setId]=useState<[] >([])
-  const [id,setId]=useState(2)
+  const [id, setId] = useState<number>(0);
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     const decodedToken = jwtDecode(token) as DecodedToken;
-  //     setRole(decodedToken.role);
-  //     console.log(decodedToken);
-  //     localStorage.setItem('userid',decodedToken.userid)
-  //   }
-  // }, [refresh]);
-
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('userId');
+    const storeRole = localStorage.getItem('role');
+    if (storedUserId && storeRole) {
+      setId(Number(storedUserId));
+      setRole(storeRole);
+    }
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
   const handleCartClick = () => {
     if (id) {
-      router.push(`/Cart/${id}`);
-      console.log('cart id passed')
+      router.push('/Cart');
     } else {
       router.push('/Login');
-      console.log('ccart id didnt passed')
     }
   };
-  
 
   const handleLogout = () => {
     localStorage.clear();
@@ -52,7 +40,6 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="bg-white shadow-md">
-   
       <div className="w-full h-12 px-32 py-3 bg-black flex justify-end items-center">
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center gap-2">
@@ -72,7 +59,6 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      
       <div className="h-16 flex justify-between items-center px-32 bg-white shadow-md">
         <div className="flex items-center gap-40">
           <div className="w-28 h-6 flex justify-center items-center">
@@ -92,7 +78,7 @@ const Navbar: React.FC = () => {
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
             <div className="relative group">
-              {!role && <Link href="/SinUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
+              {!role && <Link href="/SignUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
           </div>
@@ -102,14 +88,11 @@ const Navbar: React.FC = () => {
             <div className="opacity-50 text-black text-xs font-normal font-poppins leading-none">What are you looking for?</div>
             <FaSearch className="text-black" />
           </div>
-          
           <div className="flex items-center gap-4">
-            {role && <FaHeart onClick={() => router.push('/wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
+            {role && <FaHeart onClick={() => router.push('/Homepage/Wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
             <div className="relative cursor-pointer group">
-              {<FaShoppingCart onClick={handleCartClick} className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />}
-              <div className="w-4 h-4 absolute top-0 right-0 bg-red-500 rounded-full flex justify-center items-center transition-transform duration-300 group-hover:scale-110">
-                {/* <div className="text-neutral-50 text-xs font-normal font-poppins leading-none">2</div> */}
-              </div>
+              <FaShoppingCart onClick={handleCartClick} className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />
+              <div className="w-4 h-4 absolute top-0 right-0 bg-red-500 rounded-full flex justify-center items-center transition-transform duration-300 group-hover:scale-110"></div>
             </div>
             <div className="relative cursor-pointer group" onClick={toggleDropdown}>
               <FaUser className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />
@@ -119,7 +102,6 @@ const Navbar: React.FC = () => {
                     {!role && <button onClick={() => router.push('/LogIn')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
                     {role && <button onClick={() => router.push('/Update')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Profile</button>}
                     {role && <button onClick={handleLogout} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Logout</button>}
-                    {/* {role === 'admin' && <button onClick={() => router.push('/Admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>} */}
                     {role === 'seller' && <button onClick={() => router.push('/MyShop')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">My Shop</button>}
                   </div>
                 </div>

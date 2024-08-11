@@ -44,32 +44,55 @@ const AllProducts: React.FC = () => {
   const [wishlist, setwishlist] = useState<wishlist[]>([]);
   const [userId, setUserId] = useState<number | null>(null);
   const router = useRouter();
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/product/getall');
-      setProducts(response.data.products);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
-
-  const route=useRouter();
-
+  const token = localStorage.getItem('token');
+  // setUserId(token)
+// const test =()=>{
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const decodedToken = jwtDecode<DecodedToken>(token);
-        
-        setUserRole(decodedToken.role);
-        
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(parseInt(storedUserId, 10)); // Convert to number
     }
-    fetchProducts();
+  
+    axios.get('http://localhost:5000/api/product/getall')
+      .then((response) => {
+        setProducts(response.data.products);
+      })
+      .catch((error) => console.log(error));
   }, []);
+  
+  console.log(products)
+  console.log(wishlist)
+  console.log(userId)
+// }
+
+
+  // const fetchProducts = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:5000/api/product/getall');
+  //     setProducts(response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching products:', error);
+  //   }
+  //   fetchProducts()
+  // };
+  // console.log(products)
+
+  // const route=useRouter();
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     try {
+  //       const decodedToken = jwtDecode<DecodedToken>(token);
+        
+  //       setUserRole(decodedToken.role);
+        
+  //     } catch (error) {
+  //       console.error('Error decoding token:', error);
+  //     }
+  //   }
+  //   fetchProducts();
+  // }, []);
 
   const handleImageClick = (product: Product) => {
     setSelectedProduct(product);
@@ -77,11 +100,11 @@ const AllProducts: React.FC = () => {
 
   
   const addToWishlist = async ( productId: string ) => {
-    const userid = localStorage.getItem("userid")
+    // const userid = localStorage.getItem("userId")
     try {
       const response = await axios.post('http://localhost:5000/api/WhishList/addWishlist', {
        
-        userid :userid,
+        userid :userId,
         productid:productId
       });
       setwishlist(response.data);
@@ -92,21 +115,11 @@ const AllProducts: React.FC = () => {
   };
 
   const handleAddToCart = async (product: Product) => {
+  
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('User is not authenticated');
-        return;
-      }
-
-      const decodedToken = jwtDecode<DecodedToken>(token);
-      const userId = decodedToken.role;
-
-      const response = await axios.post('http://localhost:5000/api/cart/add', {
-        userId,
-        productId: product.productid,
-        quantity: 1, // You can adjust the quantity as needed
-      });
+    
+      const response = await axios.post('http://localhost:5000/api/cart/add', {userid: userId,
+        productid: product.productid});
 
       if (response.status === 200) {
         console.log(`Added ${product.name} to cart`);
@@ -114,7 +127,7 @@ const AllProducts: React.FC = () => {
         console.error('Failed to add product to cart');
       }
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error('Error adding product to cart:', error );
     }
   };
 

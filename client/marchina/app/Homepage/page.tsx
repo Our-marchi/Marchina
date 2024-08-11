@@ -13,6 +13,7 @@ import ExploreProducts from './ExploreProducts/page';
 import NewArrival from './NewArrival/page';
 
 
+
 type Product = {
   productid: string;
   name: string;

@@ -1,8 +1,11 @@
+'use client'
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { FaCloudUploadAlt } from 'react-icons/fa';
-import jwtDecode from 'jwt-decode';
+import Link from 'next/link';
+import { Router } from 'next/router';
 
+// Define types for your state
 interface Product {
   name: string;
   description: string;
@@ -27,11 +30,10 @@ const AddProd: React.FC = () => {
   const [showImageUpload, setShowImageUpload] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken: { userid: string } = jwtDecode(token);
-      setUserid(decodedToken.userid);
-      setProduct(prev => ({ ...prev, userid: decodedToken.userid }));
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setUserid(storedUserId);
+      setProduct(prev => ({ ...prev, userid: storedUserId }));
     }
   }, []);
 
@@ -52,28 +54,28 @@ const AddProd: React.FC = () => {
 
   const uploadSingleImage = async (base64: string | ArrayBuffer | null) => {
     try {
-      const res = await axios.post('http://localhost:5000/uploadImage', { image: base64 });
+      const res = await axios.post<string>('http://localhost:5000/uploadImage', { image: base64 });
       setUrl(res.data);
       if (res.data) {
         await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: res.data });
       } else {
         console.error('No URL received from image upload');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error uploading image:', error);
     }
   };
 
   const uploadMultipleImages = async (images: (string | ArrayBuffer | null)[]) => {
     try {
-      const res = await axios.post('http://localhost:5000/uploadMultipleImages', { images });
-      setUrl(res.data);
+      const res = await axios.post<string[]>('http://localhost:5000/uploadMultipleImages', { images });
+      setUrl(res.data[0]);
       if (res.data) {
         await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: JSON.stringify(res.data) });
       } else {
         console.error('No URL received from image upload');
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error uploading images:', error);
     }
   };
@@ -81,23 +83,23 @@ const AddProd: React.FC = () => {
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
 
-    if (files && files.length === 1) {
+    if (!files) return;
+
+    if (files.length === 1) {
       const base64 = await convertBase64(files[0]);
-      uploadSingleImage(base64);
+      await uploadSingleImage(base64);
       return;
     }
 
     const base64s: (string | ArrayBuffer | null)[] = [];
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        const base = await convertBase64(files[i]);
-        base64s.push(base);
-      }
-      uploadMultipleImages(base64s);
+    for (let i = 0; i < files.length; i++) {
+      const base = await convertBase64(files[i]);
+      base64s.push(base);
     }
+    await uploadMultipleImages(base64s);
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setProduct(prev => ({ ...prev, [name]: value }));
   };
@@ -112,16 +114,18 @@ const AddProd: React.FC = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/product/add', product);
+      const response = await axios.post<{ product: { productid: string } }>('http://localhost:5000/api/product/add', product);
       const newProductId = response.data.product.productid;
       setProductId(newProductId);
       setShowImageUpload(true);
-    } catch (error: any) {
+    } catch (error) {
       console.error('Error adding product:', error.response ? error.response.data : error.message);
       alert('Failed to add product. Please check the console for more details.');
     }
   };
-
+const handleCancel =()=>{
+  router.push('/sellerDashboard')
+}
   return (
     <div className="bg-gray-100 min-h-screen py-12">
       <div className="container mx-auto px-3">
@@ -214,12 +218,16 @@ const AddProd: React.FC = () => {
               ></textarea>
             </div>
             <div className="flex justify-end space-x-4">
-              <button
+              <Link href="/sellerDashboard"className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
+              >
+              cancel
+              </Link>
+              {/* <button
                 type="button"
                 className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
               >
                 Cancel
-              </button>
+              </button> */}
               <button
                 type="submit"
                 className="px-6 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
@@ -233,30 +241,34 @@ const AddProd: React.FC = () => {
             <div className="mt-12">
               <h2 className="text-2xl font-semibold mb-6 text-center">Upload Product Images</h2>
               <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
-                <div className="space-y-1 text-center">
-                  <FaCloudUploadAlt className="mx-auto h-12 w-12 text-gray-400" />
-                  <div className="flex text-sm text-gray-600">
-                    <label
-                      htmlFor="file-upload"
-                      className="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-red-500"
-                    >
-                      <span>Upload a file</span>
-                      <input 
-                        id="file-upload" 
-                        name="file-upload" 
-                        type="file" 
-                        className="sr-only" 
-                        onChange={uploadImage} 
-                        disabled={!productId}
-                        multiple
-                      />
+                <div className="text-center">
+                  <FaCloudUploadAlt className="text-4xl text-gray-400" />
+                  <p className="mt-1 text-sm text-gray-600">
+                    <label htmlFor="file-upload" className="cursor-pointer font-medium text-red-600 hover:text-red-500">
+                      Upload a single image or multiple images
                     </label>
-                    <p className="pl-1">or drag and drop</p>
-                  </div>
-                  <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                  </p>
+                  <input
+                    id="file-upload"
+                    name="file-upload"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                    onChange={uploadImage}
+                    className="hidden"
+                  />
                 </div>
               </div>
-              {url && <img src={url} alt="Product" className="mt-6 max-w-xs mx-auto rounded-lg shadow-md" />}
+              {url && (
+                <div className="mt-4">
+                  <h3 className="text-lg font-semibold text-gray-800">Uploaded Images</h3>
+                  <div className="mt-2 flex flex-wrap gap-4 justify-center">
+                    {url.split(',').map((imageUrl, index) => (
+                      <img key={index} src={imageUrl} alt={`Product Image ${index + 1}`} className="w-32 h-32 object-cover rounded-lg shadow-md" />
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>

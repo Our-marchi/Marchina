@@ -36,6 +36,7 @@ const LogIn: React.FC = () => {
       console.log({ token, userId, role });
       localStorage.setItem("token", token);
       localStorage.setItem("role", role );
+      localStorage.setItem("userId", userId );
       if (role === 'admin') {
         //  window.location.href = `http://localhost:3001/${encodeURIComponent(token)}`
         window.location.href = `http://localhost:3001/?token=${token}`
