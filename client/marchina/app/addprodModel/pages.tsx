@@ -1,12 +1,7 @@
-// import React, { useState, ChangeEvent, FormEvent } from 'react';
+// import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 // import axios from 'axios';
 // import { FaCloudUploadAlt } from 'react-icons/fa';
-
-// interface AddProductModalProps {
-//   isOpen: boolean;
-//   onClose: () => void;
-//   onSubmit?: (product: Product) => void;
-// }
+// import jwtDecode from 'jwt-decode';
 
 // interface Product {
 //   name: string;
@@ -17,28 +12,36 @@
 //   userid: string;
 // }
 
-// const AddProductModal: React.FC<AddProductModalProps> = ({ isOpen, onClose, onSubmit }) => {
-//   const [productId, setProductId] = useState<string>("");
+// const AddProd: React.FC = () => {
+//   const [userid, setUserid] = useState<string>('');
+//   const [productId, setProductId] = useState<string>('');
 //   const [product, setProduct] = useState<Product>({
 //     name: '',
 //     description: '',
 //     price: '',
 //     stock: '',
 //     categorie: '',
-//     userid: '1'
+//     userid: ''
 //   });
 //   const [url, setUrl] = useState<string>('');
 //   const [showImageUpload, setShowImageUpload] = useState<boolean>(false);
 
-//   console.log(url, 'test');
+//   useEffect(() => {
+//     const token = localStorage.getItem('token');
+//     if (token) {
+//       const decodedToken: { userid: string } = jwtDecode(token);
+//       setUserid(decodedToken.userid);
+//       setProduct(prev => ({ ...prev, userid: decodedToken.userid }));
+//     }
+//   }, []);
 
-//   const convertBase64 = (file: File): Promise<string> => {
+//   const convertBase64 = (file: File): Promise<string | ArrayBuffer | null> => {
 //     return new Promise((resolve, reject) => {
 //       const fileReader = new FileReader();
 //       fileReader.readAsDataURL(file);
 
 //       fileReader.onload = () => {
-//         resolve(fileReader.result as string);
+//         resolve(fileReader.result);
 //       };
 
 //       fileReader.onerror = (error) => {
@@ -47,22 +50,21 @@
 //     });
 //   };
 
-//   const uploadSingleImage = async (base64: string) => {
+//   const uploadSingleImage = async (base64: string | ArrayBuffer | null) => {
 //     try {
 //       const res = await axios.post('http://localhost:5000/uploadImage', { image: base64 });
-//       console.log(res.data, 'test2');
 //       setUrl(res.data);
 //       if (res.data) {
-//         await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: JSON.stringify(res.data) });
+//         await axios.post(`http://localhost:5000/api/product/images/${productId}`, { imageurl: res.data });
 //       } else {
 //         console.error('No URL received from image upload');
 //       }
-//     } catch (error) {
+//     } catch (error: any) {
 //       console.error('Error uploading image:', error);
 //     }
 //   };
 
-//   const uploadMultipleImages = async (images: string[]) => {
+//   const uploadMultipleImages = async (images: (string | ArrayBuffer | null)[]) => {
 //     try {
 //       const res = await axios.post('http://localhost:5000/uploadMultipleImages', { images });
 //       setUrl(res.data);
@@ -71,30 +73,28 @@
 //       } else {
 //         console.error('No URL received from image upload');
 //       }
-//       console.log('Images uploaded successfully:', res.data);
-//     } catch (error) {
+//     } catch (error: any) {
 //       console.error('Error uploading images:', error);
 //     }
 //   };
 
 //   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
 //     const files = event.target.files;
-//     if (!files) return;
 
-//     console.log(files.length);
-
-//     if (files.length === 1) {
+//     if (files && files.length === 1) {
 //       const base64 = await convertBase64(files[0]);
 //       uploadSingleImage(base64);
 //       return;
 //     }
 
-//     const base64s: string[] = [];
-//     for (let i = 0; i < files.length; i++) {
-//       const base = await convertBase64(files[i]);
-//       base64s.push(base);
+//     const base64s: (string | ArrayBuffer | null)[] = [];
+//     if (files) {
+//       for (let i = 0; i < files.length; i++) {
+//         const base = await convertBase64(files[i]);
+//         base64s.push(base);
+//       }
+//       uploadMultipleImages(base64s);
 //     }
-//     uploadMultipleImages(base64s);
 //   };
 
 //   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -105,6 +105,7 @@
 //   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 
+//     // Basic validation
 //     if (!product.name || !product.price || !product.stock) {
 //       alert('Please fill in all required fields (name, price, stock)');
 //       return;
@@ -114,26 +115,19 @@
 //       const response = await axios.post('http://localhost:5000/api/product/add', product);
 //       const newProductId = response.data.product.productid;
 //       setProductId(newProductId);
-//       console.log('Product added successfully:', newProductId);
 //       setShowImageUpload(true);
-//       if (onSubmit) {
-//         onSubmit(response.data.product);
-//       }
-      
-//     } catch (error: any) { 
+//     } catch (error: any) {
 //       console.error('Error adding product:', error.response ? error.response.data : error.message);
 //       alert('Failed to add product. Please check the console for more details.');
 //     }
 //   };
 
-//   if (!isOpen) return null;
-
 //   return (
-//     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-//       <div className="relative top-20 mx-auto p-5 border w-11/12 max-w-4xl shadow-lg rounded-md bg-white">
-//         <div className="bg-white rounded-xl shadow-2xl p-8">
+//     <div className="bg-gray-100 min-h-screen py-12">
+//       <div className="container mx-auto px-3">
+//         <div className="bg-white rounded-xl shadow-2xl p-8 max-w-4xl mx-auto">
 //           <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Add New Product</h1>
-
+          
 //           <form onSubmit={handleSubmit} className="space-y-8">
 //             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 //               <div className="space-y-4">
@@ -222,7 +216,6 @@
 //             <div className="flex justify-end space-x-4">
 //               <button
 //                 type="button"
-//                 onClick={onClose}
 //                 className="px-6 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition"
 //               >
 //                 Cancel
@@ -272,4 +265,4 @@
 //   );
 // };
 
-// export default AddProductModal;
+// export default AddProd;

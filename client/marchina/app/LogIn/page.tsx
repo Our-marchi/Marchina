@@ -3,10 +3,11 @@
 import React, { useState, FormEvent ,useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import {jwtDecode} from 'jwt-decode'
 import Image from 'next/image';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
-import {jwtDecode} from 'jwt-decode';
+
 
 
 const LogIn: React.FC = () => {

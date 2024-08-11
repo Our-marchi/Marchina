@@ -18,6 +18,8 @@ export default function Home() {
        
       </main>
       
+<Homepage/>
+
     </div>
   );
 }
