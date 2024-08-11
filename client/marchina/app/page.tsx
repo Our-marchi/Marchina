@@ -1,8 +1,8 @@
 import React from "react";
 import Link from 'next/link';
-
+import ProductDetailsPage from './ProductDetailsPage/page'
 import Homepage from '../app/Homepage/page';
-import AddProductModal from "./addprodModel/pages";
+// import AddProductModal from "./addprodModel/pages";
 
 
 export default function Home() {
@@ -13,8 +13,8 @@ export default function Home() {
         
         
         <Homepage />
-        <AddProductModal isOpen={true} onClose={() => {}} />
-        
+        {/* <AddProductModal /> */}
+       {/* < ProductDetailsPage/> */}
        
       </main>
       

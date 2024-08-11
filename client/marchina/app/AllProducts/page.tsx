@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaHeart, FaEye, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import {jwtDecode} from 'jwt-decode';
-
+import Link from 'next/link'
 type Product = {
   productid: string;
   name: string;
@@ -176,7 +176,7 @@ const AllProducts: React.FC = () => {
                           
                       </div>
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                        <FaEye onClick={() => router.push(`'/Product?productid=${product.productid}`)} className="text-black" />
+                       <Link href={{pathname:'/ProductDetailsPage',query:{product:JSON.stringify(product)}}}> <FaEye  className="text-black" /> </Link>
                       </div>
                     </div>
                   </div>

@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-custom-black text-text-secondary py-6 px-4">
+    <footer style={{backgroundColor:"black",color:"white"}} className="bg-custom-black text-text-secondary py-6 px-4">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 text-sm">
           {/* Exclusive Column */}
