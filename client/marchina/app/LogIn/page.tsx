@@ -35,6 +35,12 @@ const LogIn: React.FC = () => {
       const role = decodedToken.role;
       console.log({ token, userId, role });
       localStorage.setItem("token", token);
+      localStorage.setItem("role", role );
+      if (role === 'admin') {
+        //  window.location.href = `http://localhost:3001/${encodeURIComponent(token)}`
+        window.location.href = `http://localhost:3001/?token=${token}`
+        
+      }
       
       Swal.fire({
         icon: 'success',

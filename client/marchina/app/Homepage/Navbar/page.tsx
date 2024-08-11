@@ -19,15 +19,16 @@ const Navbar: React.FC = () => {
   // const [id,setId]=useState<[] >([])
   const [id,setId]=useState(2)
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken = jwtDecode(token) as DecodedToken;
-      setRole(decodedToken.role);
-      console.log(decodedToken);
-      localStorage.setItem('userid',decodedToken.userid)
-    }
-  }, [refresh]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     const decodedToken = jwtDecode(token) as DecodedToken;
+  //     setRole(decodedToken.role);
+  //     console.log(decodedToken);
+  //     localStorage.setItem('userid',decodedToken.userid)
+  //   }
+  // }, [refresh]);
+
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -41,6 +42,7 @@ const Navbar: React.FC = () => {
       console.log('ccart id didnt passed')
     }
   };
+  
 
   const handleLogout = () => {
     localStorage.clear();
@@ -117,7 +119,7 @@ const Navbar: React.FC = () => {
                     {!role && <button onClick={() => router.push('/LogIn')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
                     {role && <button onClick={() => router.push('/Update')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Profile</button>}
                     {role && <button onClick={handleLogout} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Logout</button>}
-                    {role === 'admin' && <button onClick={() => router.push('/Admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>}
+                    {/* {role === 'admin' && <button onClick={() => router.push('/Admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>} */}
                     {role === 'seller' && <button onClick={() => router.push('/MyShop')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">My Shop</button>}
                   </div>
                 </div>
