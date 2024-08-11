@@ -26,10 +26,13 @@ export default function Home() {
              {/* <Wishlist/> */}
   {/* <ErrorPage/> */}
  {/* < ProductDetailsPage/> */}
-       {/* <Homepage />  */}
+      {/* <Homepage /> */}
+        {/* <Cart/> */}
+        {/* <AllProducts/> */} 
+        {/* <ContactForm /> */}
+    
        {/* <Cart/> */}
         {/* <ContactForm /> */}
-        {/* <AllProducts/> */}
         {/* <AddProd /> */}
         <EditProfile/>
       </main>
