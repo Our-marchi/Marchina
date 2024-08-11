@@ -1,16 +1,49 @@
-/ @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'play-lh.googleusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.apple.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 's.isanook.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'iphonewired.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'tinyurl.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.pinimg.com',
         pathname: '/**',
       },
     ],
-    domains:['via.placeholder.com','localhost','play-lh.googleusercontent.com','images.unsplash.com', 'play-lh.googleusercontent.com','www.apple.com','s.isanook.com','iphonewired.com','tinyurl.com','i.pinimg.com'],
   },
-}
+};
 
-export default nextConfig
+export default nextConfig;

@@ -1,43 +1,40 @@
 'use client';
 
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent ,useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import {jwtDecode} from 'jwt-decode'
 import Image from 'next/image';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
-<<<<<<< HEAD
-import { fromJSON } from 'postcss';
-type DecodedToken = {
-  id: string;
-  [key: string]: any;
-};
 
-=======
-import  {jwtDecode}  from 'jwt-decode';
->>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
 
-const Login: React.FC = () => {
+
+const LogIn: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  console.log(email,password)
+  const [userId, setUserId] = useState<string | null>(null);
+  const [role, setRole] = useState<string | null>(null);
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode<{ userid: string; role: string }>(token);
+      setUserId(decodedToken.userid);
+      setRole(decodedToken.role);
+    }
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post<{ token: string }>("http://localhost:5000/api/user/logIn", { email, password });
-      const token = response.data.token
-      console.log(response.data);
-      // const decoded= jwtDecode('token').default
-      // console.log(decoded,'test');
-      
-      localStorage.setItem("token", response.data.token);
-      const decodedToken = jwtDecode<DecodedToken>(token);
-      const userId = decodedToken.id;
-      localStorage.setItem("userId", userId);
-      
+      const token = response.data.token;
+      const decodedToken = jwtDecode<{ userid: string; role: string }>(token);
+      const userId = decodedToken.userid;
+      const role = decodedToken.role;
+      console.log({ token, userId, role });
+      localStorage.setItem("token", token);
       
       Swal.fire({
         icon: 'success',
@@ -121,4 +118,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LogIn;
