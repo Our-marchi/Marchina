@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
+import  {jwtDecode}  from 'jwt-decode';
 
 const Login: React.FC = () => {
   const router = useRouter();
@@ -17,6 +18,9 @@ const Login: React.FC = () => {
     try {
       const response = await axios.post<{ token: string }>("http://localhost:5000/api/user/logIn", { email, password });
       console.log(response.data);
+      // const decoded= jwtDecode('token').default
+      // console.log(decoded,'test');
+      
       localStorage.setItem("token", response.data.token);
       
       Swal.fire({
@@ -27,7 +31,7 @@ const Login: React.FC = () => {
         confirmButtonText: 'Continue',
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/HomePage");
+          router.push("/");
         }
       });
     } catch (error) {
