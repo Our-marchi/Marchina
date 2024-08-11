@@ -14,6 +14,7 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [role, setRole] = useState<string>("");
+  console.log(firstName,email,password,role)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +26,12 @@ const SignUp: React.FC = () => {
         password,
         role 
       });
+      console.log("success");
       
+<<<<<<< HEAD
+      
+=======
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
       if (response.data) {
         Swal.fire({
           icon: 'success',

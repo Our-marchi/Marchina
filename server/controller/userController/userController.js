@@ -30,7 +30,7 @@ const signUp = async (req, res) => {
             adress: 'Ariana',
             status: 'active'
         });
-
+const secret = "hellohibye"
 
         const token = jwt.sign(
             { 
@@ -94,19 +94,41 @@ const deleteuser = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         const id = req.params.userid;
-        const [updatedRows] = await db.User.update(req.body, { where: { userid: id } });
+        const { role } = req.body; // Get the role from the request body
 
-        if (updatedRows === 0) {
+        const user = await db.User.findOne({ where: { userid: id } });
+
+        if (!user) {
             return res.status(404).send({ message: 'User not found' });
         }
 
-        res.send({ message: 'User updated successfully' });
+        user.role = role; // Update the role
+        await user.save();
+
+        res.send({ message: 'User role updated successfully', user });
     } catch (err) {
         console.error(err);
         res.status(500).send({ message: 'Server error', error: err.message });
     }
 };
+const makeAdmin = async (req, res) => {
+    try {
+        const id = req.params.userid;
+        const user = await db.User.findOne({ where: { userid: id } });
 
+        if (!user) {
+            return res.status(404).send({ message: 'User not found' });
+        }
+
+        user.role = 'admin';
+        await user.save();
+
+        res.send({ message: 'Hello admin', user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send({ message: 'you can/t be an admin , serve side', error: err.message });
+    }
+};
 const updatePassword = async (req, res) => {
     try {
         const { email, currentPassword, newPassword } = req.body;
@@ -142,4 +164,4 @@ const getAllUsers = async (req, res) => {
     res.send(users);
 };
 
-module.exports = { signUp, logIn, deleteuser, updateUser, updatePassword, getAllUsers };
+module.exports = { makeAdmin,signUp, logIn, deleteuser, updateUser, updatePassword, getAllUsers };

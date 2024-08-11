@@ -8,16 +8,8 @@ import AddProductModal from "./addprodModel/pages";
 export default function Home() {
   return (
     <div>
-  
-      <main>
-        
-        
-        <Homepage />
-        <AddProductModal isOpen={true} onClose={() => {}} />
-        
-       
-      </main>
-      
+<Homepage/>
+
     </div>
   );
 }

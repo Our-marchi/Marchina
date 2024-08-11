@@ -41,8 +41,12 @@ const AllProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [userRole, setUserRole] = useState<string>('');
+<<<<<<< HEAD
+  const [userId,setUserId]=useState(2)
+=======
   const [wishlist, setwishlist] = useState<wishlist[]>([]);
   const [userId, setUserId] = useState<number | null>(null);
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
   const router = useRouter();
 
   const fetchProducts = async () => {
@@ -54,6 +58,20 @@ const AllProducts: React.FC = () => {
     }
   };
 
+<<<<<<< HEAD
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     try {
+  //       const decodedToken = jwtDecode<DecodedToken>(token);
+  //       setUserRole(decodedToken.role);
+  //     } catch (error) {
+  //       console.error('Error decoding token:', error);
+  //     }
+  //   }
+  //   fetchProducts();
+  // }, []);
+=======
   const route=useRouter();
 
   useEffect(() => {
@@ -70,6 +88,7 @@ const AllProducts: React.FC = () => {
     }
     fetchProducts();
   }, []);
+>>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
 
   const handleImageClick = (product: Product) => {
     setSelectedProduct(product);
@@ -93,21 +112,12 @@ const AllProducts: React.FC = () => {
 
   const handleAddToCart = async (product: Product) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('User is not authenticated');
-        return;
-      }
-
-      const decodedToken = jwtDecode<DecodedToken>(token);
-      const userId = decodedToken.role;
-
       const response = await axios.post('http://localhost:5000/api/cart/add', {
-        userId,
+        userId, // Here, userId is 2 by default
         productId: product.productid,
-        quantity: 1, // You can adjust the quantity as needed
+        quantity: 1, // Adjust the quantity as needed
       });
-
+  
       if (response.status === 200) {
         console.log(`Added ${product.name} to cart`);
       } else {
