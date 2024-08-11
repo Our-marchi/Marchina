@@ -41,14 +41,13 @@ const signUp = async (req, res) => {
                 adress: newUser.adress,
                 status: newUser.status,
                 lastName: newUser.lastName
-            }, secret
-         
-        );
-        console.log('JWT signed successfully');
+            },secret)
+          
+        console.log('JWT signed successfully')
         res.status(201).send(token);
     } catch (err) {
         console.error('Detailed error in signUp:', err);
-        
+       
     }
 };
 

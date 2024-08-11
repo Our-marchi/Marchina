@@ -20,19 +20,10 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      try {
-        const decodedToken = jwtDecode(token) as DecodedToken;
-        if (decodedToken.role) {
-          setRole(decodedToken.role);
-          console.log('Role set from token:', decodedToken.role);
-        } else {
-          console.log('Role not found in token');
-        }
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
-    } else {
-      console.log('No token found in localStorage');
+      const decodedToken = jwtDecode(token) as DecodedToken;
+      setRole(decodedToken.role);
+      console.log(decodedToken);
+      localStorage.setItem('userid',decodedToken.userid)
     }
   }, [refresh]);
 
