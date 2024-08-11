@@ -24,8 +24,10 @@ const SignUp: React.FC = () => {
         password,
         role 
       });
+      console.log("success");
       
-      if (response.data.success) {
+      
+      if (response.data) {
         Swal.fire({
           icon: 'success',
           title: 'Sign Up Successful!',
@@ -152,7 +154,7 @@ const SignUp: React.FC = () => {
           </div>
           
           <p className="mt-8 text-center text-sm text-gray-600">
-            Already have account? <Link href="/Login" className="font-medium text-gray-900 hover:underline">Log in</Link>
+            Already have account? <Link href="/LogIn" className="font-medium text-gray-900 hover:underline">Log in</Link>
           </p>
         </div>
       </div>

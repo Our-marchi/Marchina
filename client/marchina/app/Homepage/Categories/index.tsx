@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import React from 'react';
@@ -11,26 +9,26 @@ type Category = {
   icon: React.ElementType;
 }
 
-type CategoriesProps ={
+type CategoriesProps = {
   setSelectedCategory: (category: string | null) => void;
 }
+
+const categories: Category[] = [
+  { name: 'Electronics', icon: FiMonitor },
+  { name: 'Accessories', icon: FiHeadphones },
+  { name: 'Mobile Phones', icon: FiPhone },
+  { name: 'Audio', icon: FiHeadphones },
+  { name: 'Wearables', icon: FiWatch },
+  { name: 'Health & Personal Care', icon: FiHeart },
+  { name: 'Photography', icon: FiCamera },
+];
 
 const Categories: React.FC<CategoriesProps> = ({ setSelectedCategory }) => {
   const router = useRouter();
 
-  const categories: Category[] = [
-    { name: 'Electronics', icon: FiMonitor },
-    { name: 'Accessories', icon: FiHeadphones },
-    { name: 'Mobile Phones', icon: FiPhone },
-    { name: 'Audio', icon: FiHeadphones },
-    { name: 'Wearables', icon: FiWatch },
-    { name: 'Health & Personal Care', icon: FiHeart },
-    { name: 'Photography', icon: FiCamera },
-  ];
-
   const handleCategoryClick = (categoryName: string) => {
-    router.push(`/category/${categoryName.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`);
     setSelectedCategory(categoryName);
+    router.push(`/Homepage/Categories/FiltredPC/${encodeURIComponent(categoryName)}`);
   };
 
   return (
@@ -40,9 +38,9 @@ const Categories: React.FC<CategoriesProps> = ({ setSelectedCategory }) => {
         <span className="text-red-500 font-semibold">Categories</span>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-4">
-        {categories.map((category, i) => (
+        {categories.map((category) => (
           <div 
-            key={i} 
+            key={category.name}
             className="p-2 md:p-4 text-center rounded-lg transition duration-300 flex flex-col items-center justify-center border border-gray-200 hover:border-red-500 hover:bg-red-50 group cursor-pointer"
             onClick={() => handleCategoryClick(category.name)}
           >
@@ -56,4 +54,3 @@ const Categories: React.FC<CategoriesProps> = ({ setSelectedCategory }) => {
 };
 
 export default Categories;
-

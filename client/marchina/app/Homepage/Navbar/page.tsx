@@ -20,9 +20,19 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = jwtDecode(token) as DecodedToken;
-      setRole(decodedToken.role);
-      console.log(decodedToken);
+      try {
+        const decodedToken = jwtDecode(token) as DecodedToken;
+        if (decodedToken.role) {
+          setRole(decodedToken.role);
+          console.log('Role set from token:', decodedToken.role);
+        } else {
+          console.log('Role not found in token');
+        }
+      } catch (error) {
+        console.error('Error decoding token:', error);
+      }
+    } else {
+      console.log('No token found in localStorage');
     }
   }, [refresh]);
 
@@ -33,7 +43,7 @@ const Navbar: React.FC = () => {
   const handleLogout = () => {
     localStorage.clear();
     setRefresh(!refresh);
-    router.push('/Login');
+    router.push('/LogIn');
   };
 
   return (
@@ -104,7 +114,7 @@ const Navbar: React.FC = () => {
                     {!role && <button onClick={() => router.push('/LogIn')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
                     {role && <button onClick={() => router.push('/Update')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Profile</button>}
                     {role && <button onClick={handleLogout} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Logout</button>}
-                    {role === 'admin' && <button onClick={() => router.push('/admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>}
+                    {role === 'admin' && <button onClick={() => router.push('/Admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>}
                     {role === 'seller' && <button onClick={() => router.push('/MyShop')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">My Shop</button>}
                   </div>
                 </div>
