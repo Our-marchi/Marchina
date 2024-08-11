@@ -27,7 +27,7 @@ const LogIn: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
+    try { 
       const response = await axios.post<{ token: string }>("http://localhost:5000/api/user/logIn", { email, password });
       const token = response.data.token;
       const decodedToken = jwtDecode<{ userid: string; role: string }>(token);
@@ -35,7 +35,8 @@ const LogIn: React.FC = () => {
       const role = decodedToken.role;
       console.log({ token, userId, role });
       localStorage.setItem("token", token);
-      
+      localStorage.setItem("role", role );
+
       Swal.fire({
         icon: 'success',
         title: 'Login Successful',
