@@ -13,4 +13,4 @@ router.get('/getAllUsers',getAllUsers)
 
 
 
-module.exports=router
+module.exports=router 

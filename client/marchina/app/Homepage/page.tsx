@@ -4,15 +4,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navigation from './Navigation/page';
 import HeroCarousel from './HeroCarousel/page';
-import Categories from './Categories/page';
+import Categories from '../Homepage/Categories/index';
 import ServiceFeatures from './ServiceFeature/page';
 import BestSelling from './BestSeling/page';
 import Photo from './Photo/page';
 import ExploreProducts from './ExploreProducts/page';
-import FilteredProducts from './FilterProduct/page';
+
 import NewArrival from './NewArrival/page';
-import Footer from './Footer/page';
-import Navbar from './Navbar/page';
+
 
 type Product = {
   productid: string;
@@ -49,19 +48,12 @@ const HomePage = () => {
         <div className="flex-1 p-4 overflow-x-hidden">
           <HeroCarousel />
           <Categories setSelectedCategory={setSelectedCategory} />
-          {selectedCategory ? (
-        <FilteredProducts 
-            category={selectedCategory} 
-             products={products.filter(product => product.categorie === selectedCategory)}
-  />
-          ) : (
-            <>
-              <BestSelling />
+           <BestSelling />
               <Photo />
               <ExploreProducts products={products} />
               <NewArrival />
-            </>
-          )}
+            
+       
           <ServiceFeatures />
         </div>
       </div>
