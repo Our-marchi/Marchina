@@ -41,12 +41,8 @@ const AllProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [userRole, setUserRole] = useState<string>('');
-<<<<<<< HEAD
-  const [userId,setUserId]=useState(2)
-=======
   const [wishlist, setwishlist] = useState<wishlist[]>([]);
   const [userId, setUserId] = useState<number | null>(null);
->>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
   const router = useRouter();
 
   const fetchProducts = async () => {
@@ -58,21 +54,7 @@ const AllProducts: React.FC = () => {
     }
   };
 
-<<<<<<< HEAD
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     try {
-  //       const decodedToken = jwtDecode<DecodedToken>(token);
-  //       setUserRole(decodedToken.role);
-  //     } catch (error) {
-  //       console.error('Error decoding token:', error);
-  //     }
-  //   }
-  //   fetchProducts();
-  // }, []);
-=======
-  const route=useRouter();
+  
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -88,7 +70,6 @@ const AllProducts: React.FC = () => {
     }
     fetchProducts();
   }, []);
->>>>>>> b4b7c95dbe572e50473b2b87a83244dfd0de0698
 
   const handleImageClick = (product: Product) => {
     setSelectedProduct(product);
