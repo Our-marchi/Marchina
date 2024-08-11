@@ -14,7 +14,7 @@ const ErrorPage: React.FC = () => {
         <button
           className='butnot'
           style={{ background: '#db4444', color: 'white', margin: '15px' }}
-          onClick={() => {route.push('/home')}} // Use router.push for navigation
+          onClick={() => {route.push('/')}} // Use router.push for navigation
         >
           Back to home page
         </button>

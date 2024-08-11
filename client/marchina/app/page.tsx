@@ -11,7 +11,7 @@ import ProductDetailsPage from "./ProductDetailsPage/page";
 import ErrorPage from "./ErrorPage/page";
 import About from "./About/page";
 import Wishlist from "./Wishlist/page";
-import AddProductModal from "./addprodModel/pages";
+// import AddProductModal from "./addprodModel/pages";
 import Link from 'next/link';
 import EditProfile from "./EditProfile/page";
 

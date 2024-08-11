@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaHeart, FaEye, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import { jwtDecode } from 'jwt-decode';
-
-interface Product {
+import {jwtDecode} from 'jwt-decode';
+import Link from 'next/link'
+type Product = {
   productid: string;
   name: string;
   price: string;
@@ -93,12 +93,21 @@ const AllProducts: React.FC = () => {
 
   const handleAddToCart = async (product: Product) => {
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('User is not authenticated');
+        return;
+      }
+
+      const decodedToken = jwtDecode<DecodedToken>(token);
+      const userId = decodedToken.role;
+
       const response = await axios.post('http://localhost:5000/api/cart/add', {
-        userId, // Here, userId is 2 by default
+        userId,
         productId: product.productid,
-        quantity: 1, // Adjust the quantity as needed
+        quantity: 1, // You can adjust the quantity as needed
       });
-  
+
       if (response.status === 200) {
         console.log(`Added ${product.name} to cart`);
       } else {
@@ -137,57 +146,64 @@ const AllProducts: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <div key={product.productid} className="relative flex flex-col items-start bg-white rounded-lg shadow-lg overflow-hidden">
-              <div className="relative w-full h-64 bg-neutral-100 rounded">
-                <img
-                  className="w-full h-full object-cover cursor-pointer"
-                  src={product.images && product.images[0] ? product.images[0].imageurl : 'https://via.placeholder.com/150x150'}
-                  alt={product.name}
-                  onClick={() => handleImageClick(product)}
-                />
-                <div className="absolute inset-0 flex items-end justify-center bg-black bg-opacity-50 transition-opacity duration-300 opacity-0 hover:opacity-100">
-                  <button
-                    onClick={() => handleAddToCart(product)}
-                    className="text-white text-base font-medium font-['Poppins'] p-2 bg-black rounded-full hover:bg-gray-800 transition-colors">
-                    Add To Cart
-                  </button>
-                </div>
-                <div className="absolute top-2 right-2 flex gap-2">
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <FaHeart className="text-black" />
+        <div className="flex justify-center">
+          <div className="overflow-y-auto h-[calc(100vh-200px)] w-full max-w-6xl">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              {products.map((product) => (
+                <div key={product.productid} className="relative flex flex-col items-start bg-white rounded-lg shadow-lg overflow-hidden">
+                  <div className="relative w-full h-64 bg-neutral-100 rounded">
+                    <img 
+                      className="w-full h-full object-cover cursor-pointer" 
+                      src={product.images && product.images[0] ? product.images[0].imageurl : 'https://via.placeholder.com/150x150'} 
+                      alt={product.name} 
+                      onClick={() => handleImageClick(product)} 
+                    />
+                    <div className="absolute inset-0 flex items-end justify-center bg-black bg-opacity-50 transition-opacity duration-300 opacity-0 hover:opacity-100">
+                      <button 
+                        onClick={() => handleAddToCart(product)} 
+                        className="text-white text-base font-medium font-['Poppins'] p-2 bg-black rounded-full hover:bg-gray-800 transition-colors">
+                        Add To Cart
+                      </button>
+                    </div>
+                    <div className="absolute top-2 right-2 flex gap-2">
+                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                        <FaHeart className="text-black" onClick={() =>  {addToWishlist(product.productid)}}/>
+                         
+                          
+                      </div>
+                      <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                       <Link href={{pathname:'/ProductDetailsPage',query:{product:JSON.stringify(product)}}}> <FaEye  className="text-black" /> </Link>
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                    <FaEye onClick={() => router.push(`/Product?productid=${product.productid}`)} className="text-black" />
+                  <div className="flex flex-col p-4 gap-2 w-full">
+                    <div 
+                      className="text-black text-sm font-medium cursor-pointer hover:text-red-500"
+                      onClick={() => toggleProductDetails(product)}
+                    >
+                      {product.name}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="text-red-500 text-base font-medium">${product.price}</div>
+                      <div className="text-gray-600 text-sm">{product.reviewsCount}</div>
+                    </div>
+                    {selectedProduct && selectedProduct.productid === product.productid && (
+                      <div className="mt-2 text-sm text-gray-600">
+                        <p><strong>Description:</strong> {product.description}</p>
+                        <p><strong>Category:</strong> {product.categorie}</p>
+                        <p><strong>Stock:</strong> {product.stock}</p>
+                      </div>
+                    )}
                   </div>
+                  {/* {(userRole === "admin") && <OneProduct 
+                    el={product} 
+                    onUpdate={handleProductUpdate} 
+                    onDelete={handleProductDelete}
+                  />} */}
                 </div>
-              </div>
-              <div className="flex flex-col p-4 gap-2 w-full">
-                <div
-                  className="text-black text-sm font-medium cursor-pointer hover:text-red-500"
-                  onClick={() => toggleProductDetails(product)}
-                >
-                  {product.name}
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="text-red-500 text-base font-medium">${product.price}</div>
-                  <div className="text-gray-600 text-sm">{product.reviewsCount}</div>
-                </div>
-                {selectedProduct && selectedProduct.productid === product.productid && (
-                  <div className="mt-2 text-sm text-gray-600">
-                    <p><strong>Description:</strong> {product.description}</p>
-                    <p><strong>Category:</strong> {product.categorie}</p>
-                    <p><strong>Stock:</strong> {product.stock}</p>
-                  </div>
-                )}
-              </div>
-              {/* {(userRole === "admin") && <OneProduct 
-                el={product} 
-                onDelete={handleProductDelete}
-              />} */}
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>
@@ -195,3 +211,4 @@ const AllProducts: React.FC = () => {
 };
 
 export default AllProducts;
+
