@@ -2,8 +2,8 @@ const { db } = require('../../database/index');
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const secret = process.env.JWT_SECRET;
 
-console.log('Environment variables loaded. JWT_SECRET:', process.env.JWT_SECRET);
 
 const signUp = async (req, res) => {
     try {
@@ -41,19 +41,14 @@ const signUp = async (req, res) => {
                 adress: newUser.adress,
                 status: newUser.status,
                 lastName: newUser.lastName
-            }, 
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
+            }, secret
+         
         );
         console.log('JWT signed successfully');
         res.status(201).send(token);
     } catch (err) {
         console.error('Detailed error in signUp:', err);
-        res.status(500).json({ 
-            message: 'Server error during signup', 
-            error: err.message,
-            stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack
-        });
+        
     }
 };
 
@@ -72,7 +67,7 @@ const logIn = async (req, res) => {
             return res.status(401).send({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ userid: user.userid, email: user.email, firstName: user.firstName , role: user.role , adress: user.adress , status: user.status , lastName: user.lastName }, process.env.JWT_SECRET);
+        const token = jwt.sign({ userid: user.userid, email: user.email, firstName: user.firstName , role: user.role , adress: user.adress , status: user.status , lastName: user.lastName }, secret);
         res.send({ token });
     } catch (err) {
         console.error(err);
