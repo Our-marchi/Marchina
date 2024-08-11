@@ -25,6 +25,7 @@ const AllProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [userRole, setUserRole] = useState<string>('');
+  const [userId,setUserId]=useState(2)
   const router = useRouter();
 
   const fetchProducts = async () => {
@@ -36,18 +37,18 @@ const AllProducts: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      try {
-        const decodedToken = jwtDecode<DecodedToken>(token);
-        setUserRole(decodedToken.role);
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
-    }
-    fetchProducts();
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     try {
+  //       const decodedToken = jwtDecode<DecodedToken>(token);
+  //       setUserRole(decodedToken.role);
+  //     } catch (error) {
+  //       console.error('Error decoding token:', error);
+  //     }
+  //   }
+  //   fetchProducts();
+  // }, []);
 
   const handleImageClick = (product: Product) => {
     setSelectedProduct(product);
@@ -55,21 +56,12 @@ const AllProducts: React.FC = () => {
 
   const handleAddToCart = async (product: Product) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('User is not authenticated');
-        return;
-      }
-
-      const decodedToken = jwtDecode<DecodedToken>(token);
-      const userId = decodedToken.role;
-
       const response = await axios.post('http://localhost:5000/api/cart/add', {
-        userId,
+        userId, // Here, userId is 2 by default
         productId: product.productid,
-        quantity: 1, // You can adjust the quantity as needed
+        quantity: 1, // Adjust the quantity as needed
       });
-
+  
       if (response.status === 200) {
         console.log(`Added ${product.name} to cart`);
       } else {

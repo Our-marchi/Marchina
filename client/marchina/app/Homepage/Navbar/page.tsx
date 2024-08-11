@@ -16,18 +16,30 @@ const Navbar: React.FC = () => {
   const [role, setRole] = useState<string>('');
   const router = useRouter();
   const [refresh, setRefresh] = useState<boolean>(false);
+  // const [id,setId]=useState<[] >([])
+  const [id,setId]=useState(2)
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decodedToken = jwtDecode(token) as DecodedToken;
-      setRole(decodedToken.role);
-      console.log(decodedToken);
-    }
-  }, [refresh]);
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     const decodedToken = jwtDecode(token) as DecodedToken;
+  //     setRole(decodedToken.role);
+  //     setId(decodedToken.id)
+  //     console.log(decodedToken);
+  //   }
+  // }, [refresh]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+  const handleCartClick = () => {
+    if (id) {
+      router.push(`/Cart/${id}`);
+      console.log('cart id passed')
+    } else {
+      router.push('/Login');
+      console.log('ccart id didnt passed')
+    }
   };
 
   const handleLogout = () => {
@@ -38,7 +50,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="bg-white shadow-md">
-      {/* Top Header */}
+   
       <div className="w-full h-12 px-32 py-3 bg-black flex justify-end items-center">
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center gap-2">
@@ -58,7 +70,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Header */}
+      
       <div className="h-16 flex justify-between items-center px-32 bg-white shadow-md">
         <div className="flex items-center gap-40">
           <div className="w-28 h-6 flex justify-center items-center">
@@ -88,10 +100,11 @@ const Navbar: React.FC = () => {
             <div className="opacity-50 text-black text-xs font-normal font-poppins leading-none">What are you looking for?</div>
             <FaSearch className="text-black" />
           </div>
+          
           <div className="flex items-center gap-4">
-            {role && <FaHeart onClick={() => router.push('/Wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
+            {role && <FaHeart onClick={() => router.push('/wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
             <div className="relative cursor-pointer group">
-              {role && <FaShoppingCart onClick={() => router.push('/Cart')} className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />}
+              {<FaShoppingCart onClick={handleCartClick} className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />}
               <div className="w-4 h-4 absolute top-0 right-0 bg-red-500 rounded-full flex justify-center items-center transition-transform duration-300 group-hover:scale-110">
                 {/* <div className="text-neutral-50 text-xs font-normal font-poppins leading-none">2</div> */}
               </div>

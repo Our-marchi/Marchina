@@ -3,21 +3,34 @@
 import React, { useState, FormEvent } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import {jwtDecode} from 'jwt-decode'
 import Image from 'next/image';
 import Link from 'next/link';
 import Swal from 'sweetalert2';
+import { fromJSON } from 'postcss';
+type DecodedToken = {
+  id: string;
+  [key: string]: any;
+};
+
 
 const Login: React.FC = () => {
   const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  console.log(email,password)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await axios.post<{ token: string }>("http://localhost:5000/api/user/logIn", { email, password });
+      const token = response.data.token
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
+      const decodedToken = jwtDecode<DecodedToken>(token);
+      const userId = decodedToken.id;
+      localStorage.setItem("userId", userId);
+      
       
       Swal.fire({
         icon: 'success',
@@ -27,7 +40,7 @@ const Login: React.FC = () => {
         confirmButtonText: 'Continue',
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/HomePage");
+          router.push("/");
         }
       });
     } catch (error) {
@@ -89,7 +102,7 @@ const Login: React.FC = () => {
           <div className="text-center">
             <p className="text-gray-600 mb-2">Don't have an account?</p>
             <button
-              onClick={() => router.push('/signup')}
+              onClick={() => router.push('/SignUp')}
               className="bg-white text-red-500 px-6 py-2 rounded-md border border-red-500 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
             >
               Sign Up
