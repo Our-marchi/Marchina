@@ -1,3 +1,5 @@
+'use client'; // Add this at the top
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { FaCloudUploadAlt } from 'react-icons/fa';

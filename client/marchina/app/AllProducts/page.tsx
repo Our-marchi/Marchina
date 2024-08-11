@@ -93,21 +93,12 @@ const AllProducts: React.FC = () => {
 
   const handleAddToCart = async (product: Product) => {
     try {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        console.error('User is not authenticated');
-        return;
-      }
-
-      const decodedToken = jwtDecode<DecodedToken>(token);
-      const userId = decodedToken.role;
-
       const response = await axios.post('http://localhost:5000/api/cart/add', {
-        userId,
+        userId, // Here, userId is 2 by default
         productId: product.productid,
-        quantity: 1,
+        quantity: 1, // Adjust the quantity as needed
       });
-
+  
       if (response.status === 200) {
         console.log(`Added ${product.name} to cart`);
       } else {

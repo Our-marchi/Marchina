@@ -39,6 +39,16 @@ const Navbar: React.FC = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+  const handleCartClick = () => {
+    const id = localStorage.getItem('userid');
+    if (id) {
+      router.push(`/Cart/${id}`);
+      console.log('cart id passed');
+    } else {
+      router.push('/Login');
+      console.log('cart id didn\'t pass');
+    }
+  };
 
   const handleLogout = () => {
     localStorage.clear();
@@ -70,7 +80,7 @@ const Navbar: React.FC = () => {
 
   return (
     <div className="bg-white shadow-md">
-      {/* Top Header */}
+   
       <div className="w-full h-12 px-32 py-3 bg-black flex justify-end items-center">
         <div className="flex justify-between items-center w-full">
           <div className="flex items-center gap-2">
@@ -90,7 +100,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Header */}
+      
       <div className="h-16 flex justify-between items-center px-32 bg-white shadow-md">
         <div className="flex items-center gap-40">
           <div className="w-28 h-6 flex justify-center items-center">
@@ -110,7 +120,7 @@ const Navbar: React.FC = () => {
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
             <div className="relative group">
-              {!role && <Link href="/SinUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
+              {!role && <Link href="/SignUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
           </div>
@@ -126,6 +136,7 @@ const Navbar: React.FC = () => {
             />
             <FaSearch className="text-black cursor-pointer" onClick={handleSearch} />
           </div>
+          
           <div className="flex items-center gap-4">
             {role && (
               <Link href="/Wishlist">
