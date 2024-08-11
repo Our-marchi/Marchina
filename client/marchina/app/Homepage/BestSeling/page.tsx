@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-type Product ={
+interface Product {
   name: string;
   image: string;
   price: number;
@@ -61,7 +61,7 @@ const BestSelling: React.FC = () => {
                 className="transition-transform duration-300 hover:scale-110"
               />
             </div>
-            <h3 className="font-semibold flex-grow">{product.name}</h3>
+            <h3 className="font-semibold flex-grow text-lg text-left text-black">{product.name}</h3>
             <div className="flex justify-between items-center mt-2">
               <span className="text-red-500 font-medium">${product.price}</span>
               <div className="flex items-center">

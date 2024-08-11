@@ -1,7 +1,7 @@
 const express = require('express');
 const routerproduct = express.Router();
 const {
-    getAllProducts, getProductByCriteria,
+    getAllProducts,   getProductByName,
     getAllProductsByUserId,
     createProduct,
     updateProduct,
@@ -14,7 +14,7 @@ const {
 
 
 routerproduct.get('/getall', getAllProducts);
-routerproduct.get('/products/search', getProductByCriteria);
+routerproduct.get('/name',   getProductByName);
 routerproduct.get('/user/:userid', getAllProductsByUserId);
 routerproduct.get('/images/:productid',getImageByProductId)
 routerproduct.get('/images/user/:userid',getImageByUserId)

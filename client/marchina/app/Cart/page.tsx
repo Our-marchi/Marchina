@@ -9,7 +9,7 @@ type CartProps = {
   className?: string;
 };
 
-type CartItem = {
+interface CartItem  {
   id: number;
   product: {
     id: number;

@@ -1,11 +1,9 @@
-
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import axios from 'axios';
 
-type Product = {
+interface Product {
   productid: string;
   name: string;
   price: number;
@@ -15,7 +13,7 @@ type Product = {
   reviews?: number;
 }
 
-interface FilteredProductsProps {
+type FilteredProductsProps = {
   category: string;
   products: Product[];
 }
@@ -72,7 +70,9 @@ const FilteredProducts: React.FC<FilteredProductsProps> = ({ category, products:
             <div className="p-6">
               <h3 className="font-semibold text-lg mb-2 text-gray-800">{product.name}</h3>
               <div className="flex justify-between items-center mb-4">
-                <span className="text-red-600 font-bold text-xl">${product.price.toFixed(2)}</span>
+                <span className="text-red-600 font-bold text-xl">
+                  ${typeof product.price === 'number' ? product.price.toFixed(2) : 'N/A'}
+                </span>
                 <div className="flex items-center">
                   <span className="text-yellow-400">{'★'.repeat(Math.floor(product.rating || 0))}{'☆'.repeat(5 - Math.floor(product.rating || 0))}</span>
                   <span className="text-gray-500 text-sm ml-1">({product.reviews || 0})</span>

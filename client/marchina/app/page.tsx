@@ -6,22 +6,38 @@ import Cart from '../app/Cart/page'
 import AllProducts from './AllProducts/page';
 import ContactForm from "./contact/page";
 import AddProd from "./addProduct/page";
+import Login from "./LogIn/page";
+import ProductDetailsPage from "./ProductDetailsPage/page"
+import ErrorPage from "./ErrorPage/page";
+import About from "./About/page";
+import Wishlist from "./Wishlist/page";
+import EditProfile from './EditProfile/page'
+
 
 
 export default function Home() {
+ 
+
     return (
       <div>
         <Navbar/>
          <main>
-          {/* <ContactForm /> */}
-       <Homepage /> 
-        {/* {/ <Cart/> */} 
+             {/* <About/> */}
+             {/* <Wishlist/> */}
+  {/* <ErrorPage/> */}
+ {/* < ProductDetailsPage/> */}
+       {/* <Homepage />  */}
+       {/* <Cart/> */}
+        {/* <ContactForm /> */}
         {/* <AllProducts/> */}
         {/* <AddProd /> */}
+        <EditProfile/>
       </main>
       <Footer/>
     
       </div>
-
     );
+      
+
+   
   }

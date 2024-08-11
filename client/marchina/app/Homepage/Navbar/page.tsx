@@ -3,10 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaHeart, FaShoppingCart, FaUser, FaAngleDown } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import Link from 'next/link';
+import axios from 'axios';
 
-type DecodedToken = {
+interface DecodedToken {
   role: string;
   [key: string]: any;
 }
@@ -14,15 +15,23 @@ type DecodedToken = {
 const Navbar: React.FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [role, setRole] = useState<string>('');
+  const [cartItemCount, setCartItemCount] = useState<number>(0);
+  const [search, setSearch] = useState<string>('');
   const router = useRouter();
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      const decodedToken = jwtDecode(token) as DecodedToken;
+      const decodedToken = jwtDecode<DecodedToken>(token);
       setRole(decodedToken.role);
       console.log(decodedToken);
+    }
+
+    const cartCount = localStorage.getItem('cartItemCount');
+    if (cartCount) {
+      setCartItemCount(parseInt(cartCount, 10));
     }
   }, [refresh]);
 
@@ -34,6 +43,28 @@ const Navbar: React.FC = () => {
     localStorage.clear();
     setRefresh(!refresh);
     router.push('/Login');
+  };
+
+  const handleAddToCart = () => {
+    const newCount = cartItemCount + 1;
+    setCartItemCount(newCount);
+    localStorage.setItem('cartItemCount', newCount.toString());
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/product/name`, {
+        params: { name: search }
+      });
+      if (response.data) {
+        setSearchResults([response.data]);
+      } else {
+        alert('Product not found');
+      }
+    } catch (error) {
+      console.error('Error searching for product:', error);
+      alert('Error searching for product');
+    }
   };
 
   return (
@@ -85,15 +116,29 @@ const Navbar: React.FC = () => {
         </div>
         <div className="flex items-center gap-6">
           <div className="pl-5 pr-3 py-1.5 bg-neutral-100 rounded flex items-center gap-2.5">
-            <div className="opacity-50 text-black text-xs font-normal font-poppins leading-none">What are you looking for?</div>
-            <FaSearch className="text-black" />
+            <input
+              type="text"
+              className="bg-neutral-100 text-black text-xs font-normal font-poppins leading-none outline-none"
+              placeholder="What are you looking for?"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <FaSearch className="text-black cursor-pointer" onClick={handleSearch} />
           </div>
           <div className="flex items-center gap-4">
-            {role && <FaHeart onClick={() => router.push('/Wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
+            {role && (
+              <Link href="/Wishlist">
+                <FaHeart className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />
+              </Link>
+            )}
             <div className="relative cursor-pointer group">
-              {role && <FaShoppingCart onClick={() => router.push('/Cart')} className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />}
+              {role && (
+                <Link href="/Cart">
+                  <FaShoppingCart className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />
+                </Link>
+              )}
               <div className="w-4 h-4 absolute top-0 right-0 bg-red-500 rounded-full flex justify-center items-center transition-transform duration-300 group-hover:scale-110">
-                {/* <div className="text-neutral-50 text-xs font-normal font-poppins leading-none">2</div> */}
+                <div className="text-neutral-50 text-xs font-normal font-poppins leading-none">{cartItemCount}</div>
               </div>
             </div>
             <div className="relative cursor-pointer group" onClick={toggleDropdown}>
@@ -112,6 +157,27 @@ const Navbar: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Search Results */}
+      <div className="px-32 py-4">
+        {searchResults.length > 0 ? (
+          <div>
+            <h2 className="text-xl font-bold">Search Results:</h2>
+            <ul>
+              {searchResults.map((product) => (
+                <li key={product.productid} className="py-2">
+                  <div className="font-bold">{product.name}</div>
+                  <div>{product.description}</div>
+                  <div>Price: ${product.price}</div>
+                  <div>Stock: {product.stock}</div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          search && <p>No products found</p>
+        )}
       </div>
     </div>
   );
