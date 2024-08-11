@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
   const handleLogout = () => {
     localStorage.clear();
     setRefresh(!refresh);
-    router.push('/Login');
+    router.push('/LogIn');
   };
 
   return (
@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
                     {!role && <button onClick={() => router.push('/LogIn')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
                     {role && <button onClick={() => router.push('/Update')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Profile</button>}
                     {role && <button onClick={handleLogout} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Logout</button>}
-                    {role === 'admin' && <button onClick={() => router.push('/admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>}
+                    {role === 'admin' && <button onClick={() => router.push('/Admin-dashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Dashboard</button>}
                     {role === 'seller' && <button onClick={() => router.push('/MyShop')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">My Shop</button>}
                   </div>
                 </div>
