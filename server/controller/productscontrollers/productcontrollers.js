@@ -18,25 +18,21 @@ const getAllProducts = async (req, res) => {
     }
 };
 // get a product by criteria (name, description, category)
-const getProductByCriteria = async (req, res) => {
-    const { name, description, category } = req.query;
+const getProductByName = async (req, res) => {
+    const { name } = req.query;
 
-  
-    const queryConditions = {};
-
-    if (name) {
-        queryConditions.name = name;
-    }
-    if (description) {
-        queryConditions.description = description;
-    }
-    if (category) {
-        queryConditions.categorie = category; 
+    if (!name) {
+        return res.status(400).send("Product name is required");
     }
 
     try {
-      
-        const product = await Product.findOne({ where: queryConditions,include:{model:Image},include:{model:db.Rating}});
+        const product = await Product.findOne({
+            where: { name },
+            include: [
+                { model: Image },
+                { model: db.Rating }
+            ]
+        });
 
         if (!product) {
             return res.status(404).send("Product not found");
@@ -221,7 +217,7 @@ const addImagebyProductId = async (req, res) => {
 
 module.exports = {
     getAllProducts,  
-    getProductByCriteria,
+    getProductByName,
     getAllProductsByUserId,
     addImagebyProductId,
     createProduct,

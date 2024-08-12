@@ -9,7 +9,7 @@ import ServiceFeatures from './ServiceFeature/page';
 import BestSelling from './BestSeling/page';
 import Photo from './Photo/page';
 import ExploreProducts from './ExploreProducts/page';
-// import FilteredProducts from '../Homepage/Categories/FiltredProdc/[categoryName]/page';
+
 import NewArrival from './NewArrival/page';
 
 
