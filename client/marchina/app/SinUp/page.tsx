@@ -26,7 +26,10 @@ const SignUp: React.FC = () => {
         password,
         role 
       });
-      console.log("success");      
+
+      console.log("success");
+      
+
       if (response.data) {
         Swal.fire({
           icon: 'success',

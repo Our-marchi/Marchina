@@ -116,9 +116,9 @@ const Profile = () => {
             </div>
             <div className="mt-4">
               <h3 className="mb-1.5 text-2xl font-semibold text-black dark:text-white">
-                Lwiiz .SYNC()
+                Lahzami Med Hosni
               </h3>
-              <p className="font-medium">Ui/Ux Designer</p>
+              <p className="font-medium">Pokemon Killa</p>
               <div className="mx-auto mb-5.5 mt-4.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark dark:bg-[#37404F]">
                 <div className="flex flex-col items-center justify-center gap-1 border-r border-stroke px-4 dark:border-strokedark xsm:flex-row">
                   <span className="font-semibold text-black dark:text-white">
@@ -145,11 +145,11 @@ const Profile = () => {
                   About Me
                 </h4>
                 <p className="mt-4.5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Pellentesque posuere fermentum urna, eu condimentum mauris
-                  tempus ut. Donec fermentum blandit aliquet. Etiam dictum
-                  dapibus ultricies. Sed vel aliquet libero. Nunc a augue
-                  fermentum, pharetra ligula sed, aliquam lacus.
+                LMH has an intimidating presence, standing tall with a lean, muscular build. He has sharp,
+                 piercing green eyes that seem to see through the soul of anyone he encounters.
+                  His hair is jet black, often kept under a hooded cloak that he wears to conceal his identity.
+                   His attire is a blend of dark tactical gear,
+                 adorned with various gadgets and weapons designed for tracking and neutralizing Pokémon.
                 </p>
               </div>
 

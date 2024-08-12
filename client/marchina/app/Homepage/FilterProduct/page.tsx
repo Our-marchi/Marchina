@@ -18,7 +18,9 @@ type FilteredProductsProps = {
   products: Product[];
 }
 
-const FilteredProducts: React.FC<FilteredProductsProps> = ({ category, products: initialProducts }) => {
+
+const FilterProduct: React.FC<FilteredProductsProps> = ({ category, products: initialProducts }) => {
+
   const params = useParams();
   const categoryName = params.category as string || category;
   const [products, setProducts] = useState<Product[]>(initialProducts);
@@ -92,4 +94,6 @@ const FilteredProducts: React.FC<FilteredProductsProps> = ({ category, products:
   );
 };
 
+
 export default FilteredProducts;
+

@@ -60,7 +60,7 @@ const Header = (props: {
             <Image
               width={32}
               height={32}
-              src={"/images/logo/logo-icon.svg"}
+              src={"https://cdn.worldvectorlogo.com/logos/marketplace-facebook.svg"}
               alt="Logo"
             />
           </Link>

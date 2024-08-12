@@ -26,15 +26,26 @@ type CartItem = {
 
 const Cart: React.FC<CartProps> = ({ className = '' }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [userId, setIdd] = useState<string | null>(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/cart/2`)
-      .then((response) => {
-        setCartItems(response.data || []);
-      })
-      .catch((error) => console.error('Error fetching cart items:', error));
+    const storedUserId = localStorage.getItem('userId');
+    if (storedUserId) {
+      setIdd(storedUserId);
+    }
   }, []);
-
+  
+  useEffect(() => {
+    if (userId) {
+      axios.get(`http://localhost:5000/api/cart/${userId}`)
+        .then((response) => {
+          setCartItems(response.data || []);
+        })
+        .catch((error) => console.error('Error fetching cart items:', error));
+    }
+  }, [userId]);
+  
+console.log(cartItems)
   const deleteItem = (cartid: number) => {
     axios.delete(`http://localhost:5000/api/cart/${cartid}`)
       .then(() => {
