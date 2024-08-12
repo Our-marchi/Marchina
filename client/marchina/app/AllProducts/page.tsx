@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FaHeart, FaEye, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import {jwtDecode} from 'jwt-decode';
-
+import Link from 'next/link'
 type Product = {
   productid: string;
   name: string;
@@ -93,12 +93,21 @@ const AllProducts: React.FC = () => {
 
   const handleAddToCart = async (product: Product) => {
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('User is not authenticated');
+        return;
+      }
+
+      const decodedToken = jwtDecode<DecodedToken>(token);
+      const userId = decodedToken.role;
+
       const response = await axios.post('http://localhost:5000/api/cart/add', {
-        userId, // Here, userId is 2 by default
+        userId,
         productId: product.productid,
-        quantity: 1, // Adjust the quantity as needed
+        quantity: 1, // You can adjust the quantity as needed
       });
-  
+
       if (response.status === 200) {
         console.log(`Added ${product.name} to cart`);
       } else {
@@ -167,7 +176,7 @@ const AllProducts: React.FC = () => {
                           
                       </div>
                       <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                        <FaEye onClick={() => router.push(`'/Product?productid=${product.productid}`)} className="text-black" />
+                       <Link href={{pathname:'/ProductDetailsPage',query:{product:JSON.stringify(product)}}}> <FaEye  className="text-black" /> </Link>
                       </div>
                     </div>
                   </div>

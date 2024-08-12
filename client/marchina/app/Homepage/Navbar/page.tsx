@@ -102,7 +102,7 @@ const Navbar: React.FC = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            {role && <FaHeart onClick={() => router.push('/wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
+            {role && <FaHeart onClick={() => router.push('/Wishlist')} className="text-black w-6 h-6 cursor-pointer transition-colors duration-300 hover:text-red-600" />}
             <div className="relative cursor-pointer group">
               {<FaShoppingCart onClick={handleCartClick} className="text-black w-6 h-6 transition-colors duration-300 group-hover:text-red-600" />}
               <div className="w-4 h-4 absolute top-0 right-0 bg-red-500 rounded-full flex justify-center items-center transition-transform duration-300 group-hover:scale-110">
