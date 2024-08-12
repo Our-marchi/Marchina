@@ -118,10 +118,6 @@ const AllProducts: React.FC = () => {
     }
   };
 
-  const handleProductDelete = (productId: string) => {
-    setProducts(products.filter(p => p.productid !== productId));
-  };
-
   const toggleProductDetails = (product: Product) => {
     if (selectedProduct && selectedProduct.productid === product.productid) {
       setSelectedProduct(null);
@@ -215,3 +211,4 @@ const AllProducts: React.FC = () => {
 };
 
 export default AllProducts;
+
