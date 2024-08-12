@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Image from 'next/image';
 
-type Slide ={
+interface Slide {
   image: string;
   title: string;
   description: string;

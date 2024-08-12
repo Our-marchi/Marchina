@@ -35,6 +35,7 @@ const LogIn: React.FC = () => {
       const role = decodedToken.role;
       console.log({ token, userId, role });
       localStorage.setItem("token", token);
+
       localStorage.setItem("role", role );
       localStorage.setItem("userId", userId );
       if (role === 'admin') {
@@ -42,6 +43,10 @@ const LogIn: React.FC = () => {
         window.location.href = `http://localhost:3001/?token=${token}`
         
       }
+
+      localStorage.setItem("userId",userId)
+      localStorage.setItem("role",role)
+
       
       Swal.fire({
         icon: 'success',
@@ -51,10 +56,14 @@ const LogIn: React.FC = () => {
         confirmButtonText: 'Continue',
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push("/");
+          if (role === 'admin') {
+            window.location.href = 'http://localhost:3001'; 
+          } else {
+            router.push("/");
+          }
         }
       });
-    } catch (error) {
+    } catch (error: any) {
       console.log("Login error:", error);
       Swal.fire({
         icon: 'error',

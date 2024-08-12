@@ -44,6 +44,7 @@ const AllProducts: React.FC = () => {
   const [userId, setUserId] = useState<number | null>(null);
   const router = useRouter();
 
+
   useEffect(() => {
     const storedUserId = localStorage.getItem('userId');
     if (storedUserId) {

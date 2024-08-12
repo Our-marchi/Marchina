@@ -6,7 +6,6 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useSearchParams } from 'next/navigation';
 
-// Define TypeScript interfaces for props
 
 
 interface DecodedToken {
