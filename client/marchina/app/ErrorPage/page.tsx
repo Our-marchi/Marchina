@@ -1,6 +1,6 @@
 "use client"
-import React from 'react';// Use Next.js router for navigation
-import '../ErrorPage/page.css'; // Import your CSS file
+import React from 'react';
+import '../ErrorPage/page.css'; 
 import { useRouter } from 'next/navigation';
 
 const ErrorPage: React.FC = () => {
@@ -14,7 +14,7 @@ const ErrorPage: React.FC = () => {
         <button
           className='butnot'
           style={{ background: '#db4444', color: 'white', margin: '15px' }}
-          onClick={() => {route.push('/')}} // Use router.push for navigation
+          onClick={() => {route.push('/')}} 
         >
           Back to home page
         </button>

@@ -54,7 +54,7 @@ const AllProducts: React.FC = () => {
     }
   };
 
-  const route=useRouter();
+  
 
   useEffect(() => {
     const token = localStorage.getItem('token');

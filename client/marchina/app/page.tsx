@@ -18,13 +18,13 @@ import EditProfile from "./EditProfile/page";
 export default function Home() {
   return (
     <div>
-      <Navbar />
+      
       <main>
         {/* <About/> */}
         {/* <Wishlist/> */}
         {/* <ErrorPage/> */}
         {/* <ProductDetailsPage/> */}
-        {/* <Homepage /> */}
+        <Homepage />
         {/* <Cart/> */}
         {/* <AllProducts/> */}
         {/* <ContactForm /> */}
@@ -34,7 +34,7 @@ export default function Home() {
         {/* <EditProfile /> */}
         {/* <AddProductModal isOpen={true} onClose={() => {}} /> */}
       </main>
-      <Footer />
+    
     </div>
   );
 }
