@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
             <div className="relative group">
-              {!role && <Link href="/SignUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
+              {!role && <Link href="/SinUp" className="text-center text-black text-base font-normal font-poppins leading-normal cursor-pointer transition-colors duration-300">Sign Up</Link>}
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-red-600 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100"></div>
             </div>
           </div>
@@ -102,7 +102,7 @@ const Navbar: React.FC = () => {
                     {!role && <button onClick={() => router.push('/LogIn')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Login</button>}
                     {role && <button onClick={() => router.push('/Update')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Profile</button>}
                     {role && <button onClick={handleLogout} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">Logout</button>}
-                    {role === 'seller' && <button onClick={() => router.push('/MyShop')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">My Shop</button>}
+                    {role === 'seller' && <button onClick={() => router.push('/sellerDashboard')} className="text-left text-black text-sm font-normal font-poppins leading-tight hover:text-red-600 p-2 rounded transition-colors duration-300">My Shop</button>}
                   </div>
                 </div>
               )}

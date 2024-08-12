@@ -3,9 +3,9 @@ import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import Link from 'next/link';
-import { Router } from 'next/router';
+// import { Router } from 'next/router';
 
-// Define types for your state
+
 interface Product {
   name: string;
   description: string;
@@ -107,7 +107,7 @@ const AddProd: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Basic validation
+   
     if (!product.name || !product.price || !product.stock) {
       alert('Please fill in all required fields (name, price, stock)');
       return;
@@ -123,9 +123,7 @@ const AddProd: React.FC = () => {
       alert('Failed to add product. Please check the console for more details.');
     }
   };
-const handleCancel =()=>{
-  router.push('/sellerDashboard')
-}
+
   return (
     <div className="bg-gray-100 min-h-screen py-12">
       <div className="container mx-auto px-3">

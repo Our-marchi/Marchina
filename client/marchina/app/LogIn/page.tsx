@@ -113,7 +113,7 @@ const LogIn: React.FC = () => {
           <div className="text-center">
             <p className="text-gray-600 mb-2">Don't have an account?</p>
             <button
-              onClick={() => router.push('/SignUp')}
+              onClick={() => router.push('/SinUp')}
               className="bg-white text-red-500 px-6 py-2 rounded-md border border-red-500 hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
             >
               Sign Up
